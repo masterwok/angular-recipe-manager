@@ -23,7 +23,6 @@ export class ActionButtonsService {
   setActionButtons(actionButtons: ActionButton[]) {
     this.actionButtons = actionButtons;
     this.actionButtonSubject.next(this.getActionButtons());
-
   }
 
   getActionButtons(): ActionButton[] {

@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 
 import {AppComponent} from './app.component';
@@ -10,12 +10,12 @@ import {RouterModule, Routes} from "@angular/router";
 import {RecipeListComponent} from './recipes/recipe-search/recipe-list/recipe-list.component';
 import {RecipeItemComponent} from './recipes/recipe-search/recipe-list/recipe-item/recipe-item.component';
 import {RecipeService} from "./services/recipe.service";
-import {Recipe} from "./recipes/models/recipe.model";
 import {RecipeDetailComponent} from './recipes/recipe-detail/recipe-detail.component';
 import {RecipeSearchComponent} from './recipes/recipe-search/recipe-search.component';
 import {ActionButtonsComponent} from './action-buttons/action-buttons.component';
 import {ActionButtonsService} from "./services/action-buttons.service";
 import {RecipeEditComponent} from "./recipes/recipe-edit/recipe-edit.component";
+
 
 const appRoutes: Routes = [
   {
@@ -52,7 +52,6 @@ const appRoutes: Routes = [
   }
 ];
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,7 +68,8 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    ReactiveFormsModule
   ],
   providers: [
     RecipeService,
