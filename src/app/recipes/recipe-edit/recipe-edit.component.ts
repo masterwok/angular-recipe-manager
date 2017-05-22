@@ -2,6 +2,9 @@ import {AfterContentInit, Component, OnInit} from '@angular/core';
 import {ActionButtonsService} from "../../services/action-buttons.service";
 import {ActionButton} from "../../action-buttons/models/action-button.model";
 import {Location} from "@angular/common";
+import {ActivatedRoute} from "@angular/router";
+import {Recipe} from "../models/recipe.model";
+import {RecipeService} from "../../services/recipe.service";
 
 @Component({
   selector: 'app-recipe-edit',
@@ -9,12 +12,20 @@ import {Location} from "@angular/common";
   styleUrls: ['./recipe-edit.component.css']
 })
 export class RecipeEditComponent implements OnInit, AfterContentInit {
+  public recipe: Recipe;
 
   constructor(private location: Location,
+              private route: ActivatedRoute,
+              private recipeService: RecipeService,
               private actionButtonService: ActionButtonsService) {
   }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      const id = +params['id'];
+
+      this.recipe = this.recipeService.getRecipe(id);
+    });
   }
 
   ngAfterContentInit(): void {

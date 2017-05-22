@@ -77,7 +77,9 @@ export class RecipeService {
   }
 
   getRecipe(id: number): Recipe {
-    return this.recipes.find(r => r.id === id);
+    const recipe = this.recipes.find(r => r.id === id);
+    Object.assign({}, recipe);
+    return recipe;
   }
 
 }
