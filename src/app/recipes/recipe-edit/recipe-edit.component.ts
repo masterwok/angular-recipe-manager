@@ -1,4 +1,4 @@
-import {AfterContentInit, AfterViewChecked, Component, OnInit} from '@angular/core';
+import {AfterContentInit, Component, OnInit} from '@angular/core';
 import {ActionButtonsService} from '../../services/action-buttons.service';
 import {ActionButton} from '../../action-buttons/models/action-button.model';
 import {Location} from '@angular/common';
@@ -25,6 +25,10 @@ export class RecipeEditComponent implements OnInit, AfterContentInit {
 
   get noIngredients(): boolean {
     return (<FormArray>this.recipeForm.get('ingredients')).controls.length === 0;
+  }
+
+  get shouldPromptWhenDiscarding(): boolean {
+    return this.recipeForm.dirty;
   }
 
   constructor(private location: Location,

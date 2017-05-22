@@ -6,7 +6,8 @@ import {Ingredient} from '../recipes/models/ingredient.model';
 @Injectable()
 export class RecipeService {
   private recipes: Recipe[] = [
-    new Recipe(0,
+    new Recipe(
+      20,
       'Drunken Noodles',
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Uterque enim summo bono fruitur, id est voluptate. Neutrum vero, inquit ille. Illum mallem levares, quo optimum atque humanissimum virum, Cn. Luxuriam non reprehendit, modo sit vacua infinita cupiditate et timore.Such cheese',
       'http://farm4.static.flickr.com/3451/3198786366_05c66197c2.jpg',
