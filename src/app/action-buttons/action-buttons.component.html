@@ -4,8 +4,9 @@
     (click)="onClick(button)"
     class="btn btn-floating tooltipped {{button.color}}"
     data-position="top"
-    data-tooltip="Create Recipe"
+    [attr.data-tooltip]="button.tip"
     style="margin-right:10px;">
     <i class="material-icons">{{button.icon}}</i>
+    {{button.tip}}
   </a>
 </div>

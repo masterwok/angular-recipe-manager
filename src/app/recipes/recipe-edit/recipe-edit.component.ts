@@ -65,13 +65,13 @@ export class RecipeEditComponent implements OnInit, AfterContentInit {
       new ActionButton(
         'undo',
         'red waves-effect waves-light',
-        'Revert Changes',
+        'Discard',
         () => this.location.back()
       ),
       new ActionButton(
         'save',
         'cyan waves-effect waves-light',
-        'Save Changes',
+        'Save',
         () => this.onSubmit()
       )
     ]);
