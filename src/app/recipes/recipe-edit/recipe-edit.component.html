@@ -26,12 +26,16 @@
       </div>
       <div class="row">
         <ul class="collection with-header" formArrayName="ingredients">
-          <li class="collection-header">
+          <li
+            style="padding-right:8px;"
+            class="collection-header">
             <h4>Ingredients
               <a
                 (click)="addIngredient()"
                 [ngClass]="{ 'pulse': noIngredients }"
-                class="btn-floating btn-small waves-effect waves-light cyan"
+                class="tooltipped btn-floating btn-small waves-effect waves-light cyan"
+                data-tooltip="Add Ingredient"
+                data-position="right"
                 style="float: right;">
                 <i
                   class="material-icons">add</i>
@@ -82,7 +86,9 @@
                 class="col s2">
                 <a
                   (click)="removeIngredient(ingredient)"
-                  class="btn-floating waves-effect waves-light red">
+                  data-tooltip="Remove Ingredient"
+                  data-position="right"
+                  class="tooltipped btn-floating waves-effect waves-light red">
                   <i class="material-icons">clear</i>
                 </a>
               </div>
@@ -128,7 +134,9 @@
         <h4>Directions
           <a
             (click)="addStep()"
-            class="btn-floating btn-small waves-effect waves-light cyan"
+            class="tooltipped btn-floating btn-small waves-effect waves-light cyan"
+            data-tooltip="Add Step"
+            data-position="right"
             [ngClass]="{ 'pulse': noSteps }"
             style="float: right;">
             <i class="material-icons">add</i>
@@ -151,7 +159,7 @@
           class="row"
           *ngFor="let stepControl of recipeForm.get('steps').controls; let i = index"
           [formGroup]="stepControl">
-          <div class="input-field col s10">
+          <div class="input-field col s11">
             <textarea
               id="step"
               name="step"
@@ -167,11 +175,16 @@
               class="active">Step {{i + 1}}.</label>
           </div>
           <div
-            class="col s2"><a
-            (click)="removeStep(stepControl)"
-            class="btn-floating btn-small waves-effect waves-light red">
-            <i class="material-icons">clear</i>
-          </a>
+            style="padding-right:0px;"
+            class="col s1">
+            <a
+              (click)="removeStep(stepControl)"
+              data-tooltip="Remove Step"
+              data-position="right"
+              style="float:right;"
+              class="tooltipped btn-floating btn-small waves-effect waves-light red">
+              <i class="material-icons">clear</i>
+            </a>
           </div>
         </div>
 

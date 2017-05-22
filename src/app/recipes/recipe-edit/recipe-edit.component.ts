@@ -1,4 +1,4 @@
-import {AfterContentInit, Component, OnInit} from '@angular/core';
+import {AfterContentInit, AfterViewChecked, Component, OnInit} from '@angular/core';
 import {ActionButtonsService} from '../../services/action-buttons.service';
 import {ActionButton} from '../../action-buttons/models/action-button.model';
 import {Location} from '@angular/common';
@@ -75,6 +75,7 @@ export class RecipeEditComponent implements OnInit, AfterContentInit {
         () => this.onSubmit()
       )
     ]);
+
   }
 
   onSubmit() {
