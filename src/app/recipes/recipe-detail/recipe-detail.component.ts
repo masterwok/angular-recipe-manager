@@ -43,6 +43,7 @@ export class RecipeDetailComponent implements OnInit, AfterContentInit {
       new ActionButton(
         'add',
         'green waves-effect waves-light',
+        'Create Recipe',
         () => this.router.navigate(['edit'], {
           relativeTo: this.route.parent
         })
@@ -50,6 +51,7 @@ export class RecipeDetailComponent implements OnInit, AfterContentInit {
       new ActionButton(
         'edit',
         'cyan waves-effect waves-light',
+        'Edit Recipe',
         () => {
           this.router.navigate(['edit'], {
             relativeTo: this.route
@@ -59,6 +61,7 @@ export class RecipeDetailComponent implements OnInit, AfterContentInit {
       new ActionButton(
         'delete',
         'red waves-effect waves-light',
+        'Remove Recipe',
         () => this.showRemoveRecipeModal()),
     ]);
   }

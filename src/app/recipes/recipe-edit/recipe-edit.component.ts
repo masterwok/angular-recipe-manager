@@ -1,4 +1,4 @@
-import {AfterContentInit, AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterContentInit, Component, OnInit} from '@angular/core';
 import {ActionButtonsService} from '../../services/action-buttons.service';
 import {ActionButton} from '../../action-buttons/models/action-button.model';
 import {Location} from '@angular/common';
@@ -65,11 +65,13 @@ export class RecipeEditComponent implements OnInit, AfterContentInit {
       new ActionButton(
         'undo',
         'red waves-effect waves-light',
+        'Revert Changes',
         () => this.location.back()
       ),
       new ActionButton(
         'save',
         'cyan waves-effect waves-light',
+        'Save Changes',
         () => this.onSubmit()
       )
     ]);

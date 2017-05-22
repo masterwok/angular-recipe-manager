@@ -1,7 +1,7 @@
 import {AfterContentInit, Component, OnInit} from '@angular/core';
-import {ActionButtonsService} from "../../services/action-buttons.service";
-import {ActionButton} from "../../action-buttons/models/action-button.model";
-import {ActivatedRoute, Route, Router} from "@angular/router";
+import {ActionButtonsService} from '../../services/action-buttons.service';
+import {ActionButton} from '../../action-buttons/models/action-button.model';
+import {ActivatedRoute, Route, Router} from '@angular/router';
 
 @Component({
   selector: 'app-recipe-search',
@@ -24,6 +24,7 @@ export class RecipeSearchComponent implements OnInit, AfterContentInit {
         new ActionButton(
           'add',
           'green waves-effect waves-light',
+          'Create Recipe',
           () => this.router.navigate(['edit'], {
             relativeTo: this.route
           })
