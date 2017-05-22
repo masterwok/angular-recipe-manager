@@ -15,7 +15,7 @@ import {Ingredient} from '../models/ingredient.model';
   styleUrls: ['./recipe-edit.component.css']
 })
 export class RecipeEditComponent implements OnInit, AfterContentInit {
-  public imagePath = `http://lorempixel.com/400/400/food/${Math.round(Math.random() * 10)}`;
+  public imagePath = `http://lorempixel.com/300/200/food/${Math.round(Math.random() * 10)}`;
   public recipeForm: FormGroup;
   public recipe: Recipe;
 

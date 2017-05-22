@@ -13,6 +13,7 @@ import {ActionButtonsService} from '../../services/action-buttons.service';
 })
 export class RecipeDetailComponent implements OnInit, AfterContentInit {
   public recipe: Recipe;
+  private removeRecipeModal;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -31,6 +32,13 @@ export class RecipeDetailComponent implements OnInit, AfterContentInit {
   }
 
   ngAfterContentInit(): void {
+    this.removeRecipeModal = window['jQuery']('#removeRecipeModal');
+
+    // Need to initialize modals
+    this.removeRecipeModal.modal({
+      dismissible: false
+    });
+
     this.actionButtonSerivce.setActionButtons([
       new ActionButton(
         'add',
@@ -51,11 +59,18 @@ export class RecipeDetailComponent implements OnInit, AfterContentInit {
       new ActionButton(
         'delete',
         'red waves-effect waves-light',
-        () =>  {
-          this.recipeService.removeRecipe(this.recipe.id);
-          this.router.navigate(['/recipes']);
-        }
-      ),
+        () => this.showRemoveRecipeModal()),
     ]);
   }
+
+  private showRemoveRecipeModal() {
+    this.removeRecipeModal.modal('open');
+  }
+
+  removeRecipe() {
+    this.recipeService.removeRecipe(this.recipe.id);
+    this.router.navigate(['/recipes']);
+  }
+
+
 }
