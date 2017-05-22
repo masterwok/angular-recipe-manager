@@ -51,7 +51,10 @@ export class RecipeDetailComponent implements OnInit, AfterContentInit {
       new ActionButton(
         'delete',
         'red waves-effect waves-light',
-        () => console.log('derp')
+        () =>  {
+          this.recipeService.removeRecipe(this.recipe.id);
+          this.router.navigate(['/recipes']);
+        }
       ),
     ])
     ;

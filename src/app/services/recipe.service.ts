@@ -63,7 +63,12 @@ export class RecipeService {
         new Ingredient('Beef Stock', '2 Quarts'),
         new Ingredient('Sherry', '1/2 Cup')
       ],
-      ['', '', '', '']
+      [
+        'This is the first step',
+        ' this is the second step',
+        ' this is the third step',
+        ' this is the forth step'
+      ]
     )
   ];
 
@@ -77,8 +82,32 @@ export class RecipeService {
   }
 
   getRecipe(id: number): Recipe {
-     const recipe = this.recipes.find(r => r.id === id);
-     return Object.assign({}, recipe);
+    const recipe = this.recipes.find(r => r.id === id);
+
+    if (!recipe) {
+      return null;
+    }
+
+    return Object.assign({}, recipe);
+  }
+
+  createRecipe(recipe: Recipe) {
+    recipe = Object.assign({}, recipe);
+
+    this.recipes.push(recipe);
+
+    this.recipesUpdated.next(this.getRecipes());
+
+    return recipe;
+  }
+
+  removeRecipe(id: number) {
+    const recipe = this.recipes.find(r => r.id === id);
+    const index = this.recipes.indexOf(recipe);
+
+    this.recipes.splice(index, 1);
+
+    this.recipesUpdated.next(this.getRecipes());
   }
 
 }

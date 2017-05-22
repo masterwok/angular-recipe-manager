@@ -2,7 +2,7 @@ import {AfterContentInit, AfterViewInit, Component, OnInit} from '@angular/core'
 import {ActionButtonsService} from '../../services/action-buttons.service';
 import {ActionButton} from '../../action-buttons/models/action-button.model';
 import {Location} from '@angular/common';
-import {ActivatedRoute, Params} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import {Recipe} from '../models/recipe.model';
 import {RecipeService} from '../../services/recipe.service';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
@@ -15,12 +15,21 @@ import {Ingredient} from '../models/ingredient.model';
   styleUrls: ['./recipe-edit.component.css']
 })
 export class RecipeEditComponent implements OnInit, AfterContentInit {
-  public imagePreviewPath: string;
+  public imagePreviewPath: string = null;
   public recipeForm: FormGroup;
   public recipe: Recipe;
 
+  get noSteps(): boolean {
+    return (<FormArray>this.recipeForm.get('steps')).controls.length === 0;
+  }
+
+  get noIngredients(): boolean {
+    return (<FormArray>this.recipeForm.get('ingredients')).controls.length === 0;
+  }
+
   constructor(private location: Location,
               private route: ActivatedRoute,
+              private router: Router,
               private recipeService: RecipeService,
               private actionButtonService: ActionButtonsService) {
   }
@@ -42,11 +51,56 @@ export class RecipeEditComponent implements OnInit, AfterContentInit {
       const id = +params['id'];
 
       this.recipe = this.recipeService.getRecipe(id);
-      this.imagePreviewPath = this.recipe.imagePath;
+
+      this.imagePreviewPath = this.recipe ? this.recipe.imagePath : null;
 
       this.setFormGroup(this.recipe);
     });
 
+  }
+
+  ngAfterContentInit(): void {
+    this.actionButtonService.setActionButtons([
+      new ActionButton(
+        'undo',
+        'red waves-effect waves-light',
+        () => this.location.back()
+      ),
+      new ActionButton(
+        'save',
+        'cyan waves-effect waves-light',
+        () => this.onSubmit()
+      )
+    ]);
+  }
+
+  onSubmit() {
+    const value = this.recipeForm.value;
+
+    console.log(`Form is valid ? ${this.recipeForm.valid}`);
+
+    const recipe = new Recipe(
+      Math.round(Math.random() * 9999999),
+      value.name,
+      value.description,
+      value.image,
+      [],
+      []
+    );
+
+
+    value.ingredients.map(ingredient => {
+      recipe.ingredients.push(new Ingredient(
+        ingredient.ingredientName,
+        ingredient.ingredientAmount)
+      );
+    });
+
+    value.steps.map(control => recipe.steps.push(control.step));
+
+    this.recipeService.createRecipe(recipe);
+
+    this.router.navigate(['/recipes']);
   }
 
   private setFormGroup(recipe?: Recipe) {
@@ -92,14 +146,6 @@ export class RecipeEditComponent implements OnInit, AfterContentInit {
     });
   }
 
-  get noSteps(): boolean {
-    return (<FormArray>this.recipeForm.get('steps')).controls.length === 0;
-  }
-
-  get noIngredients(): boolean {
-    return (<FormArray>this.recipeForm.get('ingredients')).controls.length === 0;
-  }
-
   addStep(step: FormGroup) {
     const formArray = <FormArray>this.recipeForm.get('steps');
     formArray.push(step ? step : this.createStepFormGroup());
@@ -124,20 +170,4 @@ export class RecipeEditComponent implements OnInit, AfterContentInit {
     formArray.removeAt(controlIndex);
   }
 
-  ngAfterContentInit(): void {
-
-    this.actionButtonService.setActionButtons([
-      new ActionButton(
-        'undo',
-        'red waves-effect waves-light',
-        () => this.location.back()
-      ),
-      new ActionButton(
-        'save',
-        'cyan waves-effect waves-light',
-        () => this.location.back()
-      )
-    ])
-    ;
-  }
 }
