@@ -13,8 +13,9 @@ import {RecipeService} from "./services/recipe.service";
 import {Recipe} from "./recipes/models/recipe.model";
 import {RecipeDetailComponent} from './recipes/recipe-detail/recipe-detail.component';
 import {RecipeSearchComponent} from './recipes/recipe-search/recipe-search.component';
-import { ActionButtonsComponent } from './action-buttons/action-buttons.component';
+import {ActionButtonsComponent} from './action-buttons/action-buttons.component';
 import {ActionButtonsService} from "./services/action-buttons.service";
+import {RecipeEditComponent} from "./recipes/recipe-edit/recipe-edit.component";
 
 const appRoutes: Routes = [
   {
@@ -29,7 +30,15 @@ const appRoutes: Routes = [
       {
         path: ':id',
         component: RecipeDetailComponent
-      }
+      },
+      {
+        path: 'edit',
+        component: RecipeEditComponent,
+      },
+      {
+        path: ':id/edit',
+        component: RecipeEditComponent
+      },
     ]
   },
   {
@@ -52,6 +61,7 @@ const appRoutes: Routes = [
     RecipeListComponent,
     RecipeItemComponent,
     RecipeDetailComponent,
+    RecipeEditComponent,
     RecipeSearchComponent,
     ActionButtonsComponent
   ],

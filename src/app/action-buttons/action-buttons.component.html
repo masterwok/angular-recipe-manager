@@ -1,7 +1,7 @@
 <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-  <!--<a class="btn btn-floating btn-large cyan"><i class="material-icons">add</i></a>-->
   <a
     *ngFor="let button of actionButtons"
+    (click)="onClick(button)"
     class="btn btn-floating btn-large {{button.color}}"
     style="margin-right:10px;">
     <i class="material-icons">{{button.icon}}</i>

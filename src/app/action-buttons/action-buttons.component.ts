@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActionButtonsService} from "../services/action-buttons.service";
 import {ActionButton} from "./models/action-button.model";
 
@@ -10,7 +10,8 @@ import {ActionButton} from "./models/action-button.model";
 export class ActionButtonsComponent implements OnInit {
   public actionButtons: ActionButton[];
 
-  constructor(private actionButtonService: ActionButtonsService) { }
+  constructor(private actionButtonService: ActionButtonsService) {
+  }
 
   ngOnInit() {
     this.actionButtons = this.actionButtonService.getActionButtons();
@@ -19,5 +20,10 @@ export class ActionButtonsComponent implements OnInit {
       this.actionButtons = buttons;
     });
   }
+
+  onClick(actionButton: ActionButton) {
+    actionButton.action();
+  }
+
 
 }

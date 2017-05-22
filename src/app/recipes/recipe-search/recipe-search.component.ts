@@ -1,6 +1,7 @@
 import {AfterContentInit, Component, OnInit} from '@angular/core';
 import {ActionButtonsService} from "../../services/action-buttons.service";
 import {ActionButton} from "../../action-buttons/models/action-button.model";
+import {ActivatedRoute, Route, Router} from "@angular/router";
 
 @Component({
   selector: 'app-recipe-search',
@@ -9,7 +10,10 @@ import {ActionButton} from "../../action-buttons/models/action-button.model";
 })
 export class RecipeSearchComponent implements OnInit, AfterContentInit {
 
-  constructor(private actionButtonSerivce: ActionButtonsService) {
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private actionButtonSerivce: ActionButtonsService) {
   }
 
   ngOnInit() {
@@ -19,8 +23,10 @@ export class RecipeSearchComponent implements OnInit, AfterContentInit {
     this.actionButtonSerivce.setActionButtons([
         new ActionButton(
           'add',
-          'green',
-          () => console.log('derp')
+          'green waves-effect waves-light',
+          () => this.router.navigate(['edit'], {
+            relativeTo: this.route
+          })
         )
     ]);
   }

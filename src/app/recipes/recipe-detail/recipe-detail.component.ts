@@ -1,5 +1,5 @@
 import {AfterContentInit, Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Recipe} from "../models/recipe.model";
 import {RecipeService} from "../../services/recipe.service";
 import {$} from 'jquery';
@@ -15,6 +15,7 @@ export class RecipeDetailComponent implements OnInit, AfterContentInit {
   public recipe: Recipe;
 
   constructor(private route: ActivatedRoute,
+              private router: Router,
               private recipeService: RecipeService,
               private actionButtonSerivce: ActionButtonsService) {
   }
@@ -33,19 +34,26 @@ export class RecipeDetailComponent implements OnInit, AfterContentInit {
     this.actionButtonSerivce.setActionButtons([
       new ActionButton(
         'add',
-        'green',
-        () => console.log('derp')
+        'green waves-effect waves-light',
+        () => this.router.navigate(['edit'], {
+          relativeTo: this.route.parent
+        })
       ),
       new ActionButton(
         'edit',
-        'cyan',
-        () => console.log('derp')
+        'cyan waves-effect waves-light',
+        () => {
+          this.router.navigate(['edit'], {
+            relativeTo: this.route
+          });
+        }
       ),
       new ActionButton(
         'delete',
-        'red',
+        'red waves-effect waves-light',
         () => console.log('derp')
       ),
-    ]);
+    ])
+    ;
   }
 }
