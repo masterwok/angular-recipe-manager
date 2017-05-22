@@ -17,8 +17,7 @@
             type="text"
             formControlName="imagePath"
             [(ngModel)]="imagePreviewPath"
-            name="imagePath"
-            class="validate">
+            name="imagePath">
           <label for="imagePath" class="active">Image URL</label>
         </div>
       </div>
@@ -28,11 +27,24 @@
             <h4>Ingredients
               <a
                 (click)="addIngredient()"
+                [ngClass]="{ 'pulse': noIngredients }"
                 class="btn-floating btn-small waves-effect waves-light cyan"
                 style="float: right;">
-                <i class="material-icons">add</i>
+                <i
+                  class="material-icons">add</i>
               </a>
             </h4>
+          </li>
+          <li
+            *ngIf="noIngredients"
+            class="row">
+            <div class="row">
+              <div class="col s12">
+                <p style="" class="flow-text">
+                  Your recipe needs ingredients...
+                </p>
+              </div>
+            </div>
           </li>
           <li
             *ngFor="let ingredient of recipeForm.get('ingredients').controls"
@@ -43,8 +55,12 @@
                   placeholder="Flour, salt, sherry, etc."
                   id="ingredientName"
                   type="text"
+                  [ngClass]="{'invalid': ingredient.controls['ingredientName'].touched && !ingredient.controls['ingredientName'].valid }"
                   formControlName="ingredientName">
-                <label for="ingredientName" class="active">Name</label>
+                <label
+                  data-error="Name is required."
+                  for="ingredientName"
+                  class="active">Name</label>
               </div>
               <div class="input-field col s4">
                 <input
@@ -52,8 +68,12 @@
                   id="ingredientAmount"
                   type="text"
                   name="ingredientAmount"
+                  [ngClass]="{'invalid': ingredient.controls['ingredientAmount'].touched && !ingredient.controls['ingredientAmount'].valid }"
                   formControlName="ingredientAmount">
-                <label for="ingredientAmount" class="active">Amount</label>
+                <label
+                  data-error="Amount is required."
+                  for="ingredientAmount"
+                  class="active">Amount</label>
               </div>
               <div
                 style="margin-top:15px;"
@@ -77,46 +97,78 @@
             id="name"
             type="text"
             name="name"
+            [ngClass]="{ 'invalid': recipeForm.controls['name'].touched && !recipeForm.controls['name'].valid }"
             placeholder="French Onion Soup, Sweet and Sour Pork, etc."
-            formControlName="name"
-            class="validate">
-          <label for="name" class="active">Recipe Name</label>
+            formControlName="name">
+          <label
+            for="name"
+            data-error="Recipe name is required."
+            class="active">Recipe Name</label>
         </div>
       </div>
       <div clas="row">
         <div class="input-field col s12">
           <textarea
             id="description"
+            [ngClass]="{ 'invalid': recipeForm.controls['description'].touched && !recipeForm.controls['description'].valid }"
             name="description"
             placeholder="Something about the recipe..."
             formControlName="description"
             style="height: 130px;"
             class="materialize-textarea"></textarea>
-          <label for="description" class="active">Description</label>
+          <label
+            for="description"
+            data-error="Recipe description is required."
+            class="active">Description</label>
         </div>
       </div>
       <div class="row">
         <h4>Directions
           <a
+            (click)="addStep()"
             class="btn-floating btn-small waves-effect waves-light cyan"
+            [ngClass]="{ 'pulse': noSteps }"
             style="float: right;">
             <i class="material-icons">add</i>
           </a>
         </h4>
         <div class="divider" style="margin-bottom:30px;"></div>
         <div
+          *ngIf="noSteps"
+          class="row">
+          <div class="col s12">
+            <div class="card-panel">
+              <p style="margin-top:0;" class="flow-text">
+                Your recipe needs directions...
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
           class="row"
           *ngFor="let stepControl of recipeForm.get('steps').controls; let i = index"
           [formGroup]="stepControl">
-          <div class="input-field col s12">
-          <textarea
-            id="step"
-            name="step"
-            placeholder="The next step in cooking the recipe..."
-            formControlName="step"
-            style="height: 130px;"
-            class="materialize-textarea"></textarea>
-            <label for="description" class="active">Step {{i + 1}}.</label>
+          <div class="input-field col s10">
+            <textarea
+              id="step"
+              name="step"
+              placeholder="The next step in cooking the recipe..."
+              formControlName="step"
+              style="height: 130px;"
+              [ngClass]="{'invalid': stepControl.controls['step'].touched && !stepControl.controls['step'].valid }"
+              required
+              class="materialize-textarea"></textarea>
+            <label
+              data-error="Step cannot be empty."
+              for="description"
+              class="active">Step {{i + 1}}.</label>
+          </div>
+          <div
+            class="col s2"><a
+            (click)="removeStep(stepControl)"
+            class="btn-floating btn-small waves-effect waves-light red">
+            <i class="material-icons">clear</i>
+          </a>
           </div>
         </div>
 

@@ -1,10 +1,10 @@
 import {AfterContentInit, Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {Recipe} from "../models/recipe.model";
-import {RecipeService} from "../../services/recipe.service";
+import {ActivatedRoute, Router} from '@angular/router';
+import {Recipe} from '../models/recipe.model';
+import {RecipeService} from '../../services/recipe.service';
 import {$} from 'jquery';
-import {ActionButton} from "../../action-buttons/models/action-button.model";
-import {ActionButtonsService} from "../../services/action-buttons.service";
+import {ActionButton} from '../../action-buttons/models/action-button.model';
+import {ActionButtonsService} from '../../services/action-buttons.service';
 
 @Component({
   selector: 'app-recipe-detail',

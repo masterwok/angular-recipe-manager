@@ -92,9 +92,24 @@ export class RecipeEditComponent implements OnInit, AfterContentInit {
     });
   }
 
+  get noSteps(): boolean {
+    return (<FormArray>this.recipeForm.get('steps')).controls.length === 0;
+  }
+
+  get noIngredients(): boolean {
+    return (<FormArray>this.recipeForm.get('ingredients')).controls.length === 0;
+  }
+
   addStep(step: FormGroup) {
     const formArray = <FormArray>this.recipeForm.get('steps');
     formArray.push(step ? step : this.createStepFormGroup());
+  }
+
+  removeStep(control: FormControl) {
+    const formArray = (<FormArray>this.recipeForm.get('steps'));
+    const controlIndex = formArray.controls.indexOf(control);
+
+    formArray.removeAt(controlIndex);
   }
 
   addIngredient(ingredient: FormGroup) {
