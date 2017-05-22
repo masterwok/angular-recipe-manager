@@ -28,12 +28,12 @@ const appRoutes: Routes = [
         component: RecipeSearchComponent
       },
       {
-        path: ':id',
-        component: RecipeDetailComponent
-      },
-      {
         path: 'edit',
         component: RecipeEditComponent,
+      },
+      {
+        path: ':id',
+        component: RecipeDetailComponent
       },
       {
         path: ':id/edit',

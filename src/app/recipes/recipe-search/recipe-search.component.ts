@@ -13,14 +13,14 @@ export class RecipeSearchComponent implements OnInit, AfterContentInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private actionButtonSerivce: ActionButtonsService) {
+    private actionButtonService: ActionButtonsService) {
   }
 
   ngOnInit() {
   }
 
   ngAfterContentInit(): void {
-    this.actionButtonSerivce.setActionButtons([
+    this.actionButtonService.setActionButtons([
         new ActionButton(
           'add',
           'green waves-effect waves-light',
