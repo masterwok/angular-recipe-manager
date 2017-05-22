@@ -15,7 +15,7 @@ import {Ingredient} from '../models/ingredient.model';
   styleUrls: ['./recipe-edit.component.css']
 })
 export class RecipeEditComponent implements OnInit, AfterContentInit {
-  public imagePreviewPath: string = null;
+  public imagePath = `http://lorempixel.com/400/400/food/${Math.round(Math.random() * 10)}`;
   public recipeForm: FormGroup;
   public recipe: Recipe;
 
@@ -40,6 +40,7 @@ export class RecipeEditComponent implements OnInit, AfterContentInit {
     window['jQuery']('.materialboxed').materialbox();
 
     this.recipeForm = new FormGroup({
+      id: new FormControl(null),
       name: new FormControl(null, [Validators.required]),
       description: new FormControl(null, [Validators.required]),
       imagePath: new FormControl(null),
@@ -52,7 +53,7 @@ export class RecipeEditComponent implements OnInit, AfterContentInit {
 
       this.recipe = this.recipeService.getRecipe(id);
 
-      this.imagePreviewPath = this.recipe ? this.recipe.imagePath : null;
+      this.imagePath = this.recipe ? this.recipe.imagePath : this.imagePath;
 
       this.setFormGroup(this.recipe);
     });
@@ -80,10 +81,10 @@ export class RecipeEditComponent implements OnInit, AfterContentInit {
     console.log(`Form is valid ? ${this.recipeForm.valid}`);
 
     const recipe = new Recipe(
-      Math.round(Math.random() * 9999999),
+      value.id,
       value.name,
       value.description,
-      value.image,
+      value.imagePath,
       [],
       []
     );
@@ -98,9 +99,14 @@ export class RecipeEditComponent implements OnInit, AfterContentInit {
 
     value.steps.map(control => recipe.steps.push(control.step));
 
-    this.recipeService.createRecipe(recipe);
+    if (recipe.id) {
+      this.recipeService.updateRecipe(recipe);
+      this.router.navigate(['/recipes', recipe.id]);
+    } else {
+      this.recipeService.createRecipe(recipe);
+      this.router.navigate(['/recipes']);
+    }
 
-    this.router.navigate(['/recipes']);
   }
 
   private setFormGroup(recipe?: Recipe) {
@@ -109,6 +115,7 @@ export class RecipeEditComponent implements OnInit, AfterContentInit {
     }
 
     this.recipeForm.reset({
+      id: recipe.id,
       name: recipe.name,
       description: recipe.description,
       imagePath: recipe.imagePath,

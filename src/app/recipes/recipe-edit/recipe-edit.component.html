@@ -1,11 +1,14 @@
 <form
   [formGroup]="recipeForm"
   class="detail-container">
+
+  <input type="hidden" formControlName="id">
+
   <div class="row">
     <div class="col l4 s12">
       <div class="row">
         <img
-          src="{{imagePreviewPath}}"
+          src="{{imagePath}}"
           class="materialboxed"
           style="width: 100%;object-fit: cover;"/>
       </div>
@@ -15,8 +18,8 @@
             placeholder="http://example.com/someimage.png"
             id="imagePath"
             type="text"
+            [(ngModel)]="imagePath"
             formControlName="imagePath"
-            [(ngModel)]="imagePreviewPath"
             name="imagePath">
           <label for="imagePath" class="active">Image URL</label>
         </div>

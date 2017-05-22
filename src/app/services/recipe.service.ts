@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {Recipe} from "../recipes/models/recipe.model";
-import {Subject} from "rxjs/Subject";
-import {Ingredient} from "../recipes/models/ingredient.model";
+import {Recipe} from '../recipes/models/recipe.model';
+import {Subject} from 'rxjs/Subject';
+import {Ingredient} from '../recipes/models/ingredient.model';
 
 @Injectable()
 export class RecipeService {
@@ -92,7 +92,9 @@ export class RecipeService {
   }
 
   createRecipe(recipe: Recipe) {
-    recipe = Object.assign({}, recipe);
+    recipe = Object.assign({}, recipe, {
+      id: Math.round(Math.random() * 99999999999)
+    });
 
     this.recipes.push(recipe);
 
@@ -106,6 +108,15 @@ export class RecipeService {
     const index = this.recipes.indexOf(recipe);
 
     this.recipes.splice(index, 1);
+
+    this.recipesUpdated.next(this.getRecipes());
+  }
+
+  updateRecipe(recipe: Recipe) {
+    const entry = this.recipes.find(r => r.id === recipe.id);
+    const index = this.recipes.indexOf(entry);
+
+    this.recipes[index] = Object.assign({}, recipe);
 
     this.recipesUpdated.next(this.getRecipes());
   }

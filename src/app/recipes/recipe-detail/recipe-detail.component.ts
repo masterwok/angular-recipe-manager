@@ -56,7 +56,6 @@ export class RecipeDetailComponent implements OnInit, AfterContentInit {
           this.router.navigate(['/recipes']);
         }
       ),
-    ])
-    ;
+    ]);
   }
 }

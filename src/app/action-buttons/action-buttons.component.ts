@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {ActionButtonsService} from "../services/action-buttons.service";
-import {ActionButton} from "./models/action-button.model";
+import {ActionButtonsService} from '../services/action-buttons.service';
+import {ActionButton} from './models/action-button.model';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-action-buttons',
@@ -8,9 +9,11 @@ import {ActionButton} from "./models/action-button.model";
   styleUrls: ['./action-buttons.component.css']
 })
 export class ActionButtonsComponent implements OnInit {
+
   public actionButtons: ActionButton[];
 
-  constructor(private actionButtonService: ActionButtonsService) {
+  constructor(private actionButtonService: ActionButtonsService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -20,6 +23,7 @@ export class ActionButtonsComponent implements OnInit {
       this.actionButtons = buttons;
     });
   }
+
 
   onClick(actionButton: ActionButton) {
     actionButton.action();
