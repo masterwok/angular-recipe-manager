@@ -1,0 +1,48 @@
+<div class="detail-container">
+  <div class="row">
+    <div class="col l4 s12">
+      <div class="row">
+        <img
+          src="{{recipe.imagePath}}"
+          class="materialboxed"
+          style="width: 100%;object-fit: cover;"/>
+      </div>
+      <div class="row">
+        <ul class="collection with-header">
+          <li class="collection-header"><h4>Ingredients</h4></li>
+          <a *ngFor="let ingredient of recipe.ingredients"
+             href="https://www.google.com/#safe=off&q={{ingredient.name}}+ingredient"
+             target="_blank"
+             class="collection-item">
+            {{ingredient.name}}<span class="chip badge">{{ingredient.amount}}</span>
+          </a>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col l6 s12">
+      <div clas="row">
+        <h4>{{recipe.name}}</h4>
+        <div class="divider"></div>
+        <p>{{recipe.description}}</p>
+      </div>
+      <div class="row" style="margin-top:50px;">
+        <h4>Directions</h4>
+        <div class="divider" style="margin-bottom:30px;"></div>
+
+        <div class="row" *ngFor="let step of recipe.steps; let i = index;">
+          <div class="col s12">
+            <div class="card deep-orange lighten-5">
+              <div class="card-content white-text ">
+                <span class="card-title black-text">Step {{i + 1}}.</span>
+                <p class="black-text">{{recipe.description}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

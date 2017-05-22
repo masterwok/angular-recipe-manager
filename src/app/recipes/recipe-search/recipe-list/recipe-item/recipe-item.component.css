@@ -1,0 +1,7 @@
+.recipeItem {
+  cursor: pointer;
+}
+
+.recipeItem .card-title {
+  font-weight: 600;
+}
