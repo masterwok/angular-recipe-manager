@@ -1,4 +1,4 @@
-import {AfterContentInit, Component, OnInit} from '@angular/core';
+import {AfterContentInit, Component, OnInit, ViewChild} from '@angular/core';
 import {ActionButtonsService} from '../../services/action-buttons.service';
 import {ActionButton} from '../../action-buttons/models/action-button.model';
 import {Location} from '@angular/common';
@@ -7,6 +7,7 @@ import {Recipe} from '../models/recipe.model';
 import {RecipeService} from '../../services/recipe.service';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Ingredient} from '../models/ingredient.model';
+import {RecipeDiscardChangesModalComponent} from "../recipe-discard-changes-modal/recipe-discard-changes-modal.component";
 
 
 @Component({
@@ -15,6 +16,9 @@ import {Ingredient} from '../models/ingredient.model';
   styleUrls: ['./recipe-edit.component.css']
 })
 export class RecipeEditComponent implements OnInit, AfterContentInit {
+
+  @ViewChild('discardModal') discardModal: RecipeDiscardChangesModalComponent;
+
   public imagePath = `http://lorempixel.com/300/200/food/${Math.round(Math.random() * 10)}`;
   public recipeForm: FormGroup;
   public recipe: Recipe;
@@ -27,9 +31,6 @@ export class RecipeEditComponent implements OnInit, AfterContentInit {
     return (<FormArray>this.recipeForm.get('ingredients')).controls.length === 0;
   }
 
-  get shouldPromptWhenDiscarding(): boolean {
-    return this.recipeForm.dirty;
-  }
 
   constructor(private location: Location,
               private route: ActivatedRoute,
@@ -80,6 +81,25 @@ export class RecipeEditComponent implements OnInit, AfterContentInit {
       )
     ]);
 
+  }
+
+  /**
+   * Used by the route guard to prevent deactivation of the route
+   * when the form is dirty. If the form is dirty, then a confirmation
+   * modal is displayed.
+   *
+   * @returns {any} - Returns a promise if the form is dirty and
+   * a boolean of true if the form is clean. The discard modal
+   * will return a promise that resolves based upon user action.
+   */
+  canDeactivate(): Promise<boolean> | boolean {
+    const dirty = this.recipeForm.dirty;
+
+    if (!dirty) {
+      return true;
+    }
+
+    return this.discardModal.show();
   }
 
   onSubmit() {

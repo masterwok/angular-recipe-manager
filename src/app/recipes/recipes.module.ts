@@ -9,6 +9,8 @@ import {RecipeListComponent} from "./recipe-search/recipe-list/recipe-list.compo
 import {RecipeItemComponent} from "./recipe-search/recipe-list/recipe-item/recipe-item.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {RecipeRemoveModalComponent} from "./recipe-remove-modal/recipe-remove-modal.component";
+import {CanDeactivateRecipeEditService} from "./services/can-deactivate-recipe-edit.service";
+import { RecipeDiscardChangesModalComponent } from './recipe-discard-changes-modal/recipe-discard-changes-modal.component';
 
 const routes = [
   {
@@ -23,15 +25,18 @@ const routes = [
       {
         path: 'edit',
         component: RecipeEditComponent,
+        // canDeactivate: [CanDeactivateRecipeEditService]
       },
       {
         path: ':id',
-        component: RecipeDetailComponent
+        component: RecipeDetailComponent,
+        // canDeactivate: [CanDeactivateRecipeEditService]
       },
       {
         path: ':id/edit',
-        component: RecipeEditComponent
-      },
+        component: RecipeEditComponent,
+        canDeactivate: [CanDeactivateRecipeEditService]
+      }
     ]
   }
 ];
@@ -44,13 +49,19 @@ const routes = [
     RouterModule.forChild(routes),
   ],
   declarations: [
+    // Components
     RecipeRemoveModalComponent,
     RecipesComponent,
     RecipeItemComponent,
     RecipeListComponent,
     RecipeSearchComponent,
     RecipeDetailComponent,
-    RecipeEditComponent
+    RecipeEditComponent,
+    RecipeDiscardChangesModalComponent,
+  ],
+  providers: [
+    // Services
+    CanDeactivateRecipeEditService
   ]
 })
 export class RecipesModule {
