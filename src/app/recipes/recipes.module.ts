@@ -12,6 +12,10 @@ import {RecipeRemoveModalComponent} from './recipe-remove-modal/recipe-remove-mo
 import {CanDeactivateRecipeEditService} from './services/can-deactivate-recipe-edit.service';
 import { RecipeDiscardChangesModalComponent } from './recipe-discard-changes-modal/recipe-discard-changes-modal.component';
 import {SharedModule} from '../shared/shared.module';
+import { RecipeImageComponent } from './recipe-edit/recipe-image/recipe-image.component';
+import { RecipeIngredientsListComponent } from './recipe-edit/recipe-ingredients-list/recipe-ingredients-list.component';
+import { RecipeBasicInfoComponent } from './recipe-edit/recipe-basic-info/recipe-basic-info.component';
+import { RecipeDirectionsListComponent } from './recipe-edit/recipe-directions-list/recipe-directions-list.component';
 
 const routes = [
   {
@@ -59,6 +63,10 @@ const routes = [
     RecipeDetailComponent,
     RecipeEditComponent,
     RecipeDiscardChangesModalComponent,
+    RecipeImageComponent,
+    RecipeIngredientsListComponent,
+    RecipeBasicInfoComponent,
+    RecipeDirectionsListComponent,
   ],
   providers: [
     // Services

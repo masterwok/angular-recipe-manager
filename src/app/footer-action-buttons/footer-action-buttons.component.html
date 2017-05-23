@@ -1,6 +1,7 @@
 <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
   <app-action-button
     *ngFor="let button of actionButtons"
+    style="margin-left:10px;"
     (action)="onClick(button)"
     [icon]="button.icon"
     [classes]="button.color"

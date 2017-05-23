@@ -16,6 +16,7 @@ export class ActionButtonComponent implements AfterViewInit {
   @Input() position: string;
   @Input() icon: string;
   @Input() classes: string;
+  @Input() pulse: boolean;
 
   @Output('action') action = new EventEmitter<any>();
 

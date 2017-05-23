@@ -2,62 +2,11 @@
   margin-top: 30px;
 }
 
-.recipeImage {
-  min-height: 200px;
-  width: 100%;
-  object-fit: cover;
-  background: #f9f9f9;
-}
-
-.ingredientsListItem {
-  padding-right: 10px !important;
-}
-
-.ingredientsListItem a {
-  float: right;
-}
-
 p.subText {
   font-size: 15px;
-}
-
-.ingredientRow {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.ingredientRow a {
-  float: right;
-}
-
-.ingredientRow .ingredientRemoveColumn {
-  margin-top: 15px;
 }
 
 .descriptionTextArea {
   height: 130px;
 }
 
-.directionsContainer .addButton {
-  float: right !important;
-}
-
-.directionsContainer .divider {
-  margin-bottom: 30px !important;
-}
-
-.directionsContainer .card-panel p.flow-text {
-  margin-top: 0;
-}
-
-.stepTextArea {
-  height: 130px;
-}
-
-.removeStepContainer {
-  padding-right: 0;
-}
-
-.removeStepContainer a {
-  float: right;
-}

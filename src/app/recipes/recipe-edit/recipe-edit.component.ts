@@ -7,7 +7,7 @@ import {Recipe} from '../models/recipe.model';
 import {RecipeService} from '../../services/recipe.service';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Ingredient} from '../models/ingredient.model';
-import {RecipeDiscardChangesModalComponent} from "../recipe-discard-changes-modal/recipe-discard-changes-modal.component";
+import {RecipeDiscardChangesModalComponent} from '../recipe-discard-changes-modal/recipe-discard-changes-modal.component';
 
 
 @Component({
@@ -23,14 +23,6 @@ export class RecipeEditComponent implements OnInit, AfterContentInit {
   public recipeForm: FormGroup;
   public recipe: Recipe;
   private wasSaved: boolean;
-
-  get noSteps(): boolean {
-    return (<FormArray>this.recipeForm.get('steps')).controls.length === 0;
-  }
-
-  get noIngredients(): boolean {
-    return (<FormArray>this.recipeForm.get('ingredients')).controls.length === 0;
-  }
 
 
   constructor(private location: Location,
@@ -148,65 +140,7 @@ export class RecipeEditComponent implements OnInit, AfterContentInit {
 
     this.recipeForm.reset({
       id: recipe.id,
-      name: recipe.name,
-      description: recipe.description,
-      imagePath: recipe.imagePath,
-      ingredients: new FormArray([])
     });
-
-    recipe.ingredients.forEach(i => {
-      this.addIngredient(this.createIngredientFormGroup(i));
-    });
-
-    recipe.steps.forEach(s => {
-      this.addStep(this.createStepFormGroup(s));
-    });
-  }
-
-  private createStepFormGroup(step?: string): FormGroup {
-    return new FormGroup({
-      'step': new FormControl(
-        step ? step : null,
-        [Validators.required]
-      )
-    });
-  }
-
-  private createIngredientFormGroup(ingredient?: Ingredient): FormGroup {
-    return new FormGroup({
-      'ingredientName': new FormControl(
-        ingredient ? ingredient.name : null,
-        [Validators.required]
-      ),
-      'ingredientAmount': new FormControl(
-        ingredient ? ingredient.amount : null,
-        [Validators.required]
-      )
-    });
-  }
-
-  addStep(step: FormGroup) {
-    const formArray = <FormArray>this.recipeForm.get('steps');
-    formArray.push(step ? step : this.createStepFormGroup());
-  }
-
-  removeStep(control: FormControl) {
-    const formArray = (<FormArray>this.recipeForm.get('steps'));
-    const controlIndex = formArray.controls.indexOf(control);
-
-    formArray.removeAt(controlIndex);
-  }
-
-  addIngredient(ingredient: FormGroup) {
-    const formArray = <FormArray>this.recipeForm.get('ingredients');
-    formArray.push(ingredient ? ingredient : this.createIngredientFormGroup());
-  }
-
-  removeIngredient(control: FormControl) {
-    const formArray = (<FormArray>this.recipeForm.get('ingredients'));
-    const controlIndex = formArray.controls.indexOf(control);
-
-    formArray.removeAt(controlIndex);
   }
 
 }
