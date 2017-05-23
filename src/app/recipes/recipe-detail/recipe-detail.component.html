@@ -1,3 +1,16 @@
+<div id="removeRecipeModal" class="modal">
+  <div class="modal-content">
+    <h4>Remove Recipe</h4>
+    <p>
+      Are you sure you want to remove this recipe? Recipes that are removed cannot be recovered.
+    </p>
+  </div>
+  <div class="modal-footer">
+    <a (click)="removeRecipe()" class="modal-action modal-close waves-effect waves-red btn-flat">Confirm</a>
+    <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+  </div>
+</div>
+
 <div class="detail-container">
   <div class="row">
     <div class="col l4 s12">
@@ -35,7 +48,7 @@
             <div class="card deep-orange lighten-4">
               <div class="card-content white-text ">
                 <span class="card-title black-text">Step {{i + 1}}.</span>
-                <p class="black-text">{{recipe.description}}</p>
+                <p class="black-text">{{step}}</p>
               </div>
             </div>
           </div>

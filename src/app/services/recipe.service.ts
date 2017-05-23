@@ -1,12 +1,13 @@
 import {Injectable} from '@angular/core';
-import {Recipe} from "../recipes/models/recipe.model";
-import {Subject} from "rxjs/Subject";
-import {Ingredient} from "../recipes/models/ingredient.model";
+import {Recipe} from '../recipes/models/recipe.model';
+import {Subject} from 'rxjs/Subject';
+import {Ingredient} from '../recipes/models/ingredient.model';
 
 @Injectable()
 export class RecipeService {
   private recipes: Recipe[] = [
-    new Recipe(0,
+    new Recipe(
+      20,
       'Drunken Noodles',
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Uterque enim summo bono fruitur, id est voluptate. Neutrum vero, inquit ille. Illum mallem levares, quo optimum atque humanissimum virum, Cn. Luxuriam non reprehendit, modo sit vacua infinita cupiditate et timore.Such cheese',
       'http://farm4.static.flickr.com/3451/3198786366_05c66197c2.jpg',
@@ -63,7 +64,12 @@ export class RecipeService {
         new Ingredient('Beef Stock', '2 Quarts'),
         new Ingredient('Sherry', '1/2 Cup')
       ],
-      ['', '', '', '']
+      [
+        'This is the first step',
+        ' this is the second step',
+        ' this is the third step',
+        ' this is the forth step'
+      ]
     )
   ];
 
@@ -78,8 +84,42 @@ export class RecipeService {
 
   getRecipe(id: number): Recipe {
     const recipe = this.recipes.find(r => r.id === id);
-    Object.assign({}, recipe);
+
+    if (!recipe) {
+      return null;
+    }
+
+    return Object.assign({}, recipe);
+  }
+
+  createRecipe(recipe: Recipe) {
+    recipe = Object.assign({}, recipe, {
+      id: Math.round(Math.random() * 99999999999)
+    });
+
+    this.recipes.push(recipe);
+
+    this.recipesUpdated.next(this.getRecipes());
+
     return recipe;
+  }
+
+  removeRecipe(id: number) {
+    const recipe = this.recipes.find(r => r.id === id);
+    const index = this.recipes.indexOf(recipe);
+
+    this.recipes.splice(index, 1);
+
+    this.recipesUpdated.next(this.getRecipes());
+  }
+
+  updateRecipe(recipe: Recipe) {
+    const entry = this.recipes.find(r => r.id === recipe.id);
+    const index = this.recipes.indexOf(entry);
+
+    this.recipes[index] = Object.assign({}, recipe);
+
+    this.recipesUpdated.next(this.getRecipes());
   }
 
 }

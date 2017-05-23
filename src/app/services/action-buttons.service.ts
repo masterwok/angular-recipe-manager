@@ -1,8 +1,8 @@
-import {Injectable} from "@angular/core";
+import {Injectable} from '@angular/core';
 import 'rxjs';
-import {ActionButton} from "../action-buttons/models/action-button.model";
-import {Subject} from "rxjs/Subject";
-import {NavigationStart, Router} from "@angular/router";
+import {ActionButton} from '../action-buttons/models/action-button.model';
+import {Subject} from 'rxjs/Subject';
+import {NavigationStart, Router} from '@angular/router';
 
 
 @Injectable()
@@ -23,7 +23,6 @@ export class ActionButtonsService {
   setActionButtons(actionButtons: ActionButton[]) {
     this.actionButtons = actionButtons;
     this.actionButtonSubject.next(this.getActionButtons());
-
   }
 
   getActionButtons(): ActionButton[] {
