@@ -18,6 +18,10 @@ export class RecipeDirectionsListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    if (!this.recipe) {
+      return;
+    }
+
     this.recipe.steps.forEach(s => {
       this.addStep(this.createStepFormGroup(s));
     });

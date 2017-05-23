@@ -15,6 +15,10 @@ export class RecipeBasicInfoComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (!this.recipe) {
+      return;
+    }
+
     this.recipeFormGroup.patchValue({
       'name': this.recipe.name,
       'description': this.recipe.description

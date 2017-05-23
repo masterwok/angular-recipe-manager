@@ -15,6 +15,10 @@ export class RecipeIngredientsListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    if (!this.recipe) {
+      return;
+    }
+
     this.recipe.ingredients.forEach(i => {
       this.addIngredient(this.createIngredientFormGroup(i));
     });
