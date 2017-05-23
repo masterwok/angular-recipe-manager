@@ -27,16 +27,22 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.isAuthenticating = true;
-    this.errorMessage = null;
 
     if (!this.loginFormGroup.valid) {
+      this.errorMessage = 'Valid email and password required.';
       return;
     }
 
+    this.isAuthenticating = true;
+    this.errorMessage = null;
+
     const value = this.loginFormGroup.value;
 
-    this.authService.signIn(value.email, value.password)
+    this.signIn(value.email, value.password);
+  }
+
+  private signIn(email: string, password: string) {
+    this.authService.signIn(email, password)
       .then(() => {
         this.isAuthenticating = false;
         this.router.navigate(['/recipes']);
@@ -45,7 +51,6 @@ export class LoginComponent implements OnInit {
         this.isAuthenticating = false;
         this.errorMessage = error.message;
       });
-
   }
 
 }
