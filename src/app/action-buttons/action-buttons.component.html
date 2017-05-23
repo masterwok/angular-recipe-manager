@@ -1,12 +1,6 @@
 <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-  <a
+  <app-action-button
     *ngFor="let button of actionButtons"
-    (click)="onClick(button)"
-    class="btn btn-floating tooltipped {{button.color}}"
-    data-position="top"
-    [attr.data-tooltip]="button.tip"
-    style="margin-right:10px;">
-    <i class="material-icons">{{button.icon}}</i>
-    {{button.tip}}
-  </a>
+    (action)="onClick(button)"
+    [actionButton]="button"></app-action-button>
 </div>

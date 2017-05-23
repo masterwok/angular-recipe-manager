@@ -7,20 +7,11 @@ import {ActionButton} from './models/action-button.model';
   templateUrl: './action-buttons.component.html',
   styleUrls: ['./action-buttons.component.css']
 })
-export class ActionButtonsComponent implements OnInit, AfterViewChecked {
+export class ActionButtonsComponent implements OnInit {
   public actionButtons: ActionButton[];
-  private updateTooltips: boolean;
 
   constructor(private actionButtonService: ActionButtonsService) {
-  }
-
-  ngAfterViewChecked(): void {
-    if (!this.updateTooltips) {
-      return;
-    }
-
-    this.updateTooltips = false;
-    window['jQuery']('.tooltipped').tooltip();
+    this.onClick = this.onClick.bind(this);
   }
 
   ngOnInit() {
@@ -28,7 +19,6 @@ export class ActionButtonsComponent implements OnInit, AfterViewChecked {
 
     this.actionButtonService.actionButtonSubject.subscribe(buttons => {
       this.actionButtons = buttons;
-      this.updateTooltips = true;
     });
   }
 
@@ -37,6 +27,5 @@ export class ActionButtonsComponent implements OnInit, AfterViewChecked {
     actionButton.action();
     window['jQuery']('.tooltipped').tooltip('remove');
   }
-
 
 }
