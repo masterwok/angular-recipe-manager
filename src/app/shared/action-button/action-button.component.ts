@@ -1,9 +1,9 @@
 import {
   AfterViewInit,
-  Component,
+  Component, ElementRef,
   EventEmitter,
   Input,
-  Output
+  Output, ViewChild
 } from '@angular/core';
 
 @Component({
@@ -11,8 +11,11 @@ import {
   templateUrl: './action-button.component.html',
   styleUrls: ['./action-button.component.css']
 })
-export class ActionButtonComponent implements AfterViewInit {
+export class ActionButtonComponent implements AfterViewInit, AfterViewInit {
+
+  @ViewChild('actionButton') button: ElementRef;
   @Input() tip: string;
+  @Input() removeTipAfterClick = true;
   @Input() position: string;
   @Input() icon: string;
   @Input() classes: string;
@@ -23,7 +26,16 @@ export class ActionButtonComponent implements AfterViewInit {
   constructor() {
   }
 
+  onClick() {
+    if (this.removeTipAfterClick) {
+      console.log('removing...');
+      window['jQuery'](this.button.nativeElement).tooltip('remove');
+    }
+
+    this.action.emit(null);
+  }
+
   ngAfterViewInit(): void {
-    window['jQuery']('.tooltipped').tooltip();
+    window['jQuery'](this.button.nativeElement).tooltip();
   }
 }

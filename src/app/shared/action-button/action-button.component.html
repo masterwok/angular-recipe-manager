@@ -1,7 +1,8 @@
 <a
+  #actionButton
   class="btn btn-floating tooltipped {{classes}}"
   [attr.data-position]="position"
-  (click)="action.emit(null)"
+  (click)="onClick()"
   [ngClass]="{ 'pulse': pulse }"
   [attr.data-tooltip]="tip">
   <i class="material-icons">{{icon}}</i>
