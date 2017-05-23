@@ -40,6 +40,8 @@ export class RecipeDirectionsListComponent implements OnInit {
   addStep(step: FormGroup) {
     const formArray = <FormArray>this.recipeFormGroup.get('steps');
     formArray.push(step ? step : this.createStepFormGroup());
+
+    this.recipeFormGroup.markAsDirty();
   }
 
   removeStep(control: FormControl) {
@@ -47,5 +49,7 @@ export class RecipeDirectionsListComponent implements OnInit {
     const controlIndex = formArray.controls.indexOf(control);
 
     formArray.removeAt(controlIndex);
+
+    this.recipeFormGroup.markAsDirty();
   }
 }

@@ -31,6 +31,8 @@ export class RecipeIngredientsListComponent implements OnInit {
   addIngredient(ingredient: FormGroup) {
     const formArray = <FormArray>this.recipeFormGroup.get('ingredients');
     formArray.push(ingredient ? ingredient : this.createIngredientFormGroup());
+
+    this.recipeFormGroup.markAsDirty();
   }
 
   removeIngredient(control: FormControl) {
@@ -38,6 +40,8 @@ export class RecipeIngredientsListComponent implements OnInit {
     const controlIndex = formArray.controls.indexOf(control);
 
     formArray.removeAt(controlIndex);
+
+    this.recipeFormGroup.markAsDirty();
   }
 
   private createIngredientFormGroup(ingredient?: Ingredient): FormGroup {
