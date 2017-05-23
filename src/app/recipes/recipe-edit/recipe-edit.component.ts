@@ -22,6 +22,7 @@ export class RecipeEditComponent implements OnInit, AfterContentInit {
   public imagePath = `http://lorempixel.com/300/200/food/${Math.round(Math.random() * 10)}`;
   public recipeForm: FormGroup;
   public recipe: Recipe;
+  private wasSaved: boolean;
 
   get noSteps(): boolean {
     return (<FormArray>this.recipeForm.get('steps')).controls.length === 0;
@@ -95,7 +96,9 @@ export class RecipeEditComponent implements OnInit, AfterContentInit {
   canDeactivate(): Promise<boolean> | boolean {
     const dirty = this.recipeForm.dirty;
 
-    if (!dirty) {
+    // Skip deactivation check if the form was already saved
+    // or if the form is not dirty.
+    if (!dirty || this.wasSaved) {
       return true;
     }
 
@@ -128,9 +131,11 @@ export class RecipeEditComponent implements OnInit, AfterContentInit {
 
     if (recipe.id) {
       this.recipeService.updateRecipe(recipe);
+      this.wasSaved = true;
       this.router.navigate(['/recipes', recipe.id]);
     } else {
       this.recipeService.createRecipe(recipe);
+      this.wasSaved = true;
       this.router.navigate(['/recipes']);
     }
 
