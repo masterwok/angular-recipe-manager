@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 
 import {AppComponent} from './app.component';
@@ -13,6 +13,7 @@ import {
 import {ActionButtonsService} from './services/action-buttons.service';
 import {RecipesModule} from './recipes/recipes.module';
 import {SharedModule} from './shared/shared.module';
+import { LoginComponent } from './login/login.component';
 
 
 const appRoutes: Routes = [
@@ -20,6 +21,11 @@ const appRoutes: Routes = [
     path: '',
     pathMatch: 'full',
     redirectTo: '/recipes'
+  },
+  {
+    path: 'login',
+    pathMatch: 'full',
+    component: LoginComponent
   },
   {
     path: '**',
@@ -32,6 +38,7 @@ const appRoutes: Routes = [
     AppComponent,
     HeaderComponent,
     FooterActionButtonsComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +46,7 @@ const appRoutes: Routes = [
     HttpModule,
     RecipesModule,
     SharedModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [

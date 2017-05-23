@@ -1,0 +1,42 @@
+<form
+  [formGroup]="loginFormGroup"
+  class="row">
+  <div class="col s6 m6 offset-l4 l4">
+    <div class="row">
+      <div class="col s12">
+        <h5 class="cyan-text">Login Required</h5>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input
+          formControlName="email"
+          placeholder="Enter email"
+          [ngClass]="{ 'invalid': loginFormGroup.controls['email'].touched && !loginFormGroup.controls['email'].valid }"
+          id="email"
+          type="text">
+        <label
+          data-error="Valid email required."
+          for="email">Email</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input
+          formControlName="password"
+          [ngClass]="{ 'invalid': loginFormGroup.controls['password'].touched && !loginFormGroup.controls['password'].valid }"
+          placeholder="Enter password"
+          id="password"
+          type="password">
+        <label
+          data-error="Password required."
+          for="password">Username</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <a class="waves-effect waves-light btn cyan">Login</a>
+      </div>
+    </div>
+  </div>
+</form>
