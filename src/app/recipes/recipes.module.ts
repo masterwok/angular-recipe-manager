@@ -26,12 +26,11 @@ const routes = [
       {
         path: 'edit',
         component: RecipeEditComponent,
-        // canDeactivate: [CanDeactivateRecipeEditService]
+        canDeactivate: [CanDeactivateRecipeEditService]
       },
       {
         path: ':id',
-        component: RecipeDetailComponent,
-        // canDeactivate: [CanDeactivateRecipeEditService]
+        component: RecipeDetailComponent
       },
       {
         path: ':id/edit',
