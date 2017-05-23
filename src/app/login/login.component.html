@@ -1,6 +1,27 @@
+<div
+  [hidden]="!isAuthenticating"
+  class="row spinner-wrapper">
+  <div class="col s12 center-align">
+    <div class="preloader-wrapper small big active">
+      <div class="spinner-layer spinner-cyan">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div>
+        <div class="gap-patch">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <form
   [formGroup]="loginFormGroup"
   (ngSubmit)="onSubmit()"
+  [hidden]="isAuthenticating"
   class="row">
   <div class="col s6 m6 offset-l4 l4">
     <div class="row">
@@ -13,6 +34,7 @@
         <input
           formControlName="email"
           placeholder="Enter email"
+          class="active"
           [ngClass]="{ 'invalid': loginFormGroup.controls['email'].touched && !loginFormGroup.controls['email'].valid }"
           id="email"
           type="text">
@@ -25,18 +47,24 @@
       <div class="input-field col s12">
         <input
           formControlName="password"
+          class="active"
           [ngClass]="{ 'invalid': loginFormGroup.controls['password'].touched && !loginFormGroup.controls['password'].valid }"
           placeholder="Enter password"
           id="password"
           type="password">
         <label
           data-error="Password required."
-          for="password">Username</label>
+          for="password">Password</label>
       </div>
     </div>
     <div class="row">
       <div class="col s12">
         <button type="submit" class="waves-effect waves-light btn cyan">Login</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <p class="red-text">{{errorMessage}}</p>
       </div>
     </div>
   </div>

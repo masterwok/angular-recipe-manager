@@ -1,3 +1,7 @@
-form {
+form, .spinner-wrapper {
   margin-top: 40px;
+}
+
+.spinner-cyan {
+  border-color: #00bcd4;
 }

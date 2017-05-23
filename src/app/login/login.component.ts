@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../services/auth.service';
 import {Router} from '@angular/router';
@@ -11,6 +11,8 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
   public loginFormGroup: FormGroup;
   public isAuthenticated: boolean;
+  public isAuthenticating: boolean;
+  public errorMessage: string;
 
   constructor(private authService: AuthService,
               private router: Router) {
@@ -25,6 +27,8 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    this.isAuthenticating = true;
+    this.errorMessage = null;
 
     if (!this.loginFormGroup.valid) {
       return;
@@ -35,8 +39,13 @@ export class LoginComponent implements OnInit {
     console.dir(value);
 
     this.authService.signIn(value.email, value.password)
-      .then(user => {
+      .then(() => {
+        this.isAuthenticating = false;
         this.router.navigate(['/recipes']);
+      })
+      .catch(error => {
+        this.isAuthenticating = false;
+        this.errorMessage = error.message;
       });
 
   }
