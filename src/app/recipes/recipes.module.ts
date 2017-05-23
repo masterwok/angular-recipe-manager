@@ -11,6 +11,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {RecipeRemoveModalComponent} from "./recipe-remove-modal/recipe-remove-modal.component";
 import {CanDeactivateRecipeEditService} from "./services/can-deactivate-recipe-edit.service";
 import { RecipeDiscardChangesModalComponent } from './recipe-discard-changes-modal/recipe-discard-changes-modal.component';
+import {ActionButtonComponent} from "../action-button/action-button.component";
 
 const routes = [
   {
@@ -56,6 +57,7 @@ const routes = [
     RecipeListComponent,
     RecipeSearchComponent,
     RecipeDetailComponent,
+    ActionButtonComponent,
     RecipeEditComponent,
     RecipeDiscardChangesModalComponent,
   ],

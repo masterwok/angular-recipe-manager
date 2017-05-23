@@ -1,5 +1,10 @@
-import {AfterViewInit, Component, EventEmitter, Input, Output} from '@angular/core';
-import {ActionButton} from "../models/action-button.model";
+import {
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  Input,
+  Output
+} from '@angular/core';
 
 @Component({
   selector: 'app-action-button',
@@ -7,7 +12,10 @@ import {ActionButton} from "../models/action-button.model";
   styleUrls: ['./action-button.component.css']
 })
 export class ActionButtonComponent implements AfterViewInit {
-  @Input() actionButton: ActionButton;
+  @Input() classes: string;
+  @Input() tip: string;
+  @Input() icon: string;
+
   @Output('action') action = new EventEmitter<any>();
 
   constructor() {
@@ -16,5 +24,4 @@ export class ActionButtonComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     window['jQuery']('.tooltipped').tooltip();
   }
-
 }

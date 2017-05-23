@@ -10,7 +10,7 @@ import {RecipeService} from './services/recipe.service';
 import {ActionButtonsComponent} from './action-buttons/action-buttons.component';
 import {ActionButtonsService} from './services/action-buttons.service';
 import {RecipesModule} from "./recipes/recipes.module";
-import { ActionButtonComponent } from './action-buttons/action-button/action-button.component';
+import { ActionButtonComponent } from './action-button/action-button.component';
 
 
 const appRoutes: Routes = [
@@ -29,8 +29,7 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     HeaderComponent,
-    ActionButtonsComponent,
-    ActionButtonComponent
+    ActionButtonsComponent
   ],
   imports: [
     BrowserModule,
