@@ -26,6 +26,10 @@ p.subText {
   margin-bottom: 10px;
 }
 
+.ingredientRow a {
+  float: right;
+}
+
 .ingredientRow .ingredientRemoveColumn {
   margin-top: 15px;
 }

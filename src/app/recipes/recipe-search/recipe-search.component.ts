@@ -24,7 +24,7 @@ export class RecipeSearchComponent implements OnInit, AfterContentInit {
         new ActionButton(
           'add',
           'green waves-effect waves-light',
-          'Create Recipe',
+          'Create',
           () => this.router.navigate(['edit'], {
             relativeTo: this.route
           })
