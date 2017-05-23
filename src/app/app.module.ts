@@ -16,6 +16,7 @@ import {SharedModule} from './shared/shared.module';
 import { LoginComponent } from './login/login.component';
 import {AuthService} from './services/auth.service';
 import {AuthGuard} from './services/auth-guard.service';
+import {Endpoints} from './constants/endpoints';
 
 
 const appRoutes: Routes = [

@@ -2,10 +2,15 @@ import {Injectable} from '@angular/core';
 import {Recipe} from '../recipes/models/recipe.model';
 import {Subject} from 'rxjs/Subject';
 import {Ingredient} from '../recipes/models/ingredient.model';
+import {AuthService} from './auth.service';
+import {Http} from '@angular/http';
+import {Endpoints} from '../constants/endpoints';
+
 
 @Injectable()
 export class RecipeService {
-  private recipes: Recipe[] = [
+
+  private seedData: Recipe[] = [
     new Recipe(
       20,
       'Drunken Noodles',
@@ -73,9 +78,22 @@ export class RecipeService {
     )
   ];
 
+
+  private recipes: Recipe[] = [];
+
   public recipesUpdated: Subject<Recipe[]> = new Subject<Recipe[]>();
 
-  constructor() {
+  constructor(private authService: AuthService,
+              private http: Http) {
+  }
+
+  private fetchRecipes(): Recipe[] {
+    const token = this.authService.getToken();
+
+
+    this.http.get(Endpoints.recipeEndpoint, {});
+
+    return null;
   }
 
   getRecipes(): Recipe[] {
