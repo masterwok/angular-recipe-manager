@@ -14,6 +14,7 @@ import {ActionButtonsService} from './services/action-buttons.service';
 import {RecipesModule} from './recipes/recipes.module';
 import {SharedModule} from './shared/shared.module';
 import { LoginComponent } from './login/login.component';
+import {AuthService} from './services/auth.service';
 
 
 const appRoutes: Routes = [
@@ -38,7 +39,7 @@ const appRoutes: Routes = [
     AppComponent,
     HeaderComponent,
     FooterActionButtonsComponent,
-    LoginComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +51,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes)
   ],
   providers: [
+    AuthService,
     RecipeService,
     ActionButtonsService
   ],

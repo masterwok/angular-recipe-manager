@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActionButtonsService} from '../services/action-buttons.service';
 import {ActionButton} from './models/action-button.model';
 import {NavigationEnd, Router} from '@angular/router';
+import {AuthService} from '../services/auth.service';
 
 @Component({
   selector: 'app-action-buttons',
@@ -11,7 +12,12 @@ import {NavigationEnd, Router} from '@angular/router';
 export class FooterActionButtonsComponent implements OnInit {
   public actionButtons: ActionButton[];
 
+  get shouldRender(): boolean {
+    return this.authService.isAuthenticated;
+  }
+
   constructor(private actionButtonService: ActionButtonsService,
+              private authService: AuthService,
               private router: Router) {
     this.onClick = this.onClick.bind(this);
   }

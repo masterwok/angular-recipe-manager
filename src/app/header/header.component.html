@@ -1,9 +1,4 @@
 <header>
-  <ul id="dropdown1" class="dropdown-content">
-    <li><a routerLink="/recipes">Recipes</a></li>
-    <li class="divider"></li>
-    <li><a href="#!">Logout</a></li>
-  </ul>
   <nav class="red lighten-3">
     <div class="nav-wrapper">
       <a
@@ -13,15 +8,9 @@
         Mom's Recipes
       </a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a routerLink="/recipes">Recipes</a></li>
-        <li>
-          <a
-            class="dropdown-button"
-            data-beloworigin="true"
-            data-activates="dropdown1">
-            Dropdown<i class="material-icons right">arrow_drop_down</i>
-          </a>
-        </li>
+        <li routerLinkActive="active"><a routerLink="/login" *ngIf="!isAuthenticated">Login</a></li>
+        <li routerLinkActive="active"><a routerLink="/recipes" *ngIf="isAuthenticated">Recipes</a></li>
+        <li><a (click)="signOut()" *ngIf="isAuthenticated">Logout</a></li>
       </ul>
     </div>
   </nav>
