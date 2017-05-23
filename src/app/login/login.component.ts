@@ -36,8 +36,6 @@ export class LoginComponent implements OnInit {
 
     const value = this.loginFormGroup.value;
 
-    console.dir(value);
-
     this.authService.signIn(value.email, value.password)
       .then(() => {
         this.isAuthenticating = false;

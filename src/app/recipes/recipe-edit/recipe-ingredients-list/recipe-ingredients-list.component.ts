@@ -32,7 +32,9 @@ export class RecipeIngredientsListComponent implements OnInit {
     const formArray = <FormArray>this.recipeFormGroup.get('ingredients');
     formArray.push(ingredient ? ingredient : this.createIngredientFormGroup());
 
-    this.recipeFormGroup.markAsDirty();
+    if (!ingredient) {
+      this.recipeFormGroup.markAsDirty();
+    }
   }
 
   removeIngredient(control: FormControl) {

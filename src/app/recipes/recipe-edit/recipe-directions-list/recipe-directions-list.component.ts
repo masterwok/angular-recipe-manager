@@ -15,7 +15,8 @@ export class RecipeDirectionsListComponent implements OnInit {
     return (<FormArray>this.recipeFormGroup.get('steps')).controls.length === 0;
   }
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
     if (!this.recipe) {
@@ -41,7 +42,9 @@ export class RecipeDirectionsListComponent implements OnInit {
     const formArray = <FormArray>this.recipeFormGroup.get('steps');
     formArray.push(step ? step : this.createStepFormGroup());
 
-    this.recipeFormGroup.markAsDirty();
+    if (!step) {
+      this.recipeFormGroup.markAsDirty();
+    }
   }
 
   removeStep(control: FormControl) {

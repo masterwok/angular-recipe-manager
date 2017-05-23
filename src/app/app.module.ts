@@ -15,6 +15,7 @@ import {RecipesModule} from './recipes/recipes.module';
 import {SharedModule} from './shared/shared.module';
 import { LoginComponent } from './login/login.component';
 import {AuthService} from './services/auth.service';
+import {AuthGuard} from './services/auth-guard.service';
 
 
 const appRoutes: Routes = [
@@ -52,6 +53,7 @@ const appRoutes: Routes = [
   ],
   providers: [
     AuthService,
+    AuthGuard,
     RecipeService,
     ActionButtonsService
   ],

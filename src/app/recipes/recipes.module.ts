@@ -16,10 +16,12 @@ import { RecipeImageComponent } from './recipe-edit/recipe-image/recipe-image.co
 import { RecipeIngredientsListComponent } from './recipe-edit/recipe-ingredients-list/recipe-ingredients-list.component';
 import { RecipeBasicInfoComponent } from './recipe-edit/recipe-basic-info/recipe-basic-info.component';
 import { RecipeDirectionsListComponent } from './recipe-edit/recipe-directions-list/recipe-directions-list.component';
+import {AuthGuard} from '../services/auth-guard.service';
 
 const routes = [
   {
     path: 'recipes',
+    canActivate: [AuthGuard],
     component: RecipesComponent,
     children: [
       {
