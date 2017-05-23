@@ -15,32 +15,11 @@ import {RecipeSearchComponent} from './recipes/recipe-search/recipe-search.compo
 import {ActionButtonsComponent} from './action-buttons/action-buttons.component';
 import {ActionButtonsService} from './services/action-buttons.service';
 import {RecipeEditComponent} from './recipes/recipe-edit/recipe-edit.component';
+import {RecipeRemoveModalComponent} from './recipes/recipe-remove-modal/recipe-remove-modal.component';
+import {RecipesModule} from "./recipes/recipes.module";
 
 
 const appRoutes: Routes = [
-  {
-    path: 'recipes',
-    component: RecipesComponent,
-    children: [
-      {
-        path: '',
-        pathMatch: 'full',
-        component: RecipeSearchComponent
-      },
-      {
-        path: 'edit',
-        component: RecipeEditComponent,
-      },
-      {
-        path: ':id',
-        component: RecipeDetailComponent
-      },
-      {
-        path: ':id/edit',
-        component: RecipeEditComponent
-      },
-    ]
-  },
   {
     path: '',
     pathMatch: 'full',
@@ -56,20 +35,14 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     HeaderComponent,
-    RecipesComponent,
-    RecipeListComponent,
-    RecipeItemComponent,
-    RecipeDetailComponent,
-    RecipeEditComponent,
-    RecipeSearchComponent,
     ActionButtonsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
+    RecipesModule,
     RouterModule.forRoot(appRoutes),
-    ReactiveFormsModule
   ],
   providers: [
     RecipeService,

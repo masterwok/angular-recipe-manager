@@ -34,8 +34,8 @@ export class ActionButtonsComponent implements OnInit, AfterViewChecked {
 
 
   onClick(actionButton: ActionButton) {
-    window['jQuery']('.tooltipped').tooltip('remove');
     actionButton.action();
+    window['jQuery']('.tooltipped').tooltip('remove');
   }
 
 

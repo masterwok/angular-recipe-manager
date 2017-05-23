@@ -19,6 +19,9 @@ export class RecipeDetailComponent implements OnInit, AfterContentInit {
               private router: Router,
               private recipeService: RecipeService,
               private actionButtonSerivce: ActionButtonsService) {
+
+    // Need to bind this as the method is executed in the modal's scope.
+    this.removeRecipe = this.removeRecipe.bind(this);
   }
 
   ngOnInit() {
