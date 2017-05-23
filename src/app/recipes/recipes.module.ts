@@ -1,17 +1,17 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {RecipeEditComponent} from "./recipe-edit/recipe-edit.component";
-import {RecipeDetailComponent} from "./recipe-detail/recipe-detail.component";
-import {RecipeSearchComponent} from "./recipe-search/recipe-search.component";
-import {RecipesComponent} from "./recipes.component";
-import {RouterModule} from "@angular/router";
-import {RecipeListComponent} from "./recipe-search/recipe-list/recipe-list.component";
-import {RecipeItemComponent} from "./recipe-search/recipe-list/recipe-item/recipe-item.component";
-import {ReactiveFormsModule} from "@angular/forms";
-import {RecipeRemoveModalComponent} from "./recipe-remove-modal/recipe-remove-modal.component";
-import {CanDeactivateRecipeEditService} from "./services/can-deactivate-recipe-edit.service";
+import {RecipeEditComponent} from './recipe-edit/recipe-edit.component';
+import {RecipeDetailComponent} from './recipe-detail/recipe-detail.component';
+import {RecipeSearchComponent} from './recipe-search/recipe-search.component';
+import {RecipesComponent} from './recipes.component';
+import {RouterModule} from '@angular/router';
+import {RecipeListComponent} from './recipe-search/recipe-list/recipe-list.component';
+import {RecipeItemComponent} from './recipe-search/recipe-list/recipe-item/recipe-item.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {RecipeRemoveModalComponent} from './recipe-remove-modal/recipe-remove-modal.component';
+import {CanDeactivateRecipeEditService} from './services/can-deactivate-recipe-edit.service';
 import { RecipeDiscardChangesModalComponent } from './recipe-discard-changes-modal/recipe-discard-changes-modal.component';
-import {ActionButtonComponent} from "../action-button/action-button.component";
+import {SharedModule} from '../shared/shared.module';
 
 const routes = [
   {
@@ -47,7 +47,8 @@ const routes = [
   imports: [
     ReactiveFormsModule,
     CommonModule,
-    RouterModule.forChild(routes),
+    SharedModule,
+    RouterModule.forChild(routes)
   ],
   declarations: [
     // Components
@@ -57,7 +58,6 @@ const routes = [
     RecipeListComponent,
     RecipeSearchComponent,
     RecipeDetailComponent,
-    ActionButtonComponent,
     RecipeEditComponent,
     RecipeDiscardChangesModalComponent,
   ],

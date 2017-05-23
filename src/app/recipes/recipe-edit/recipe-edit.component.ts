@@ -1,6 +1,6 @@
 import {AfterContentInit, Component, OnInit, ViewChild} from '@angular/core';
 import {ActionButtonsService} from '../../services/action-buttons.service';
-import {ActionButton} from '../../action-buttons/models/action-button.model';
+import {ActionButton} from '../../footer-action-buttons/models/action-button.model';
 import {Location} from '@angular/common';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {Recipe} from '../models/recipe.model';

@@ -7,10 +7,12 @@ import {AppComponent} from './app.component';
 import {HeaderComponent} from './header/header.component';
 import {RouterModule, Routes} from '@angular/router';
 import {RecipeService} from './services/recipe.service';
-import {ActionButtonsComponent} from './action-buttons/action-buttons.component';
+import {
+  FooterActionButtonsComponent
+} from './footer-action-buttons/footer-action-buttons.component';
 import {ActionButtonsService} from './services/action-buttons.service';
-import {RecipesModule} from "./recipes/recipes.module";
-import { ActionButtonComponent } from './action-button/action-button.component';
+import {RecipesModule} from './recipes/recipes.module';
+import {SharedModule} from './shared/shared.module';
 
 
 const appRoutes: Routes = [
@@ -29,14 +31,15 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     HeaderComponent,
-    ActionButtonsComponent
+    FooterActionButtonsComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     RecipesModule,
-    RouterModule.forRoot(appRoutes),
+    SharedModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [
     RecipeService,

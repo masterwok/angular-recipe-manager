@@ -1,6 +1,6 @@
 import {AfterContentInit, Component, OnInit} from '@angular/core';
 import {ActionButtonsService} from '../../services/action-buttons.service';
-import {ActionButton} from '../../action-buttons/models/action-button.model';
+import {ActionButton} from '../../footer-action-buttons/models/action-button.model';
 import {ActivatedRoute, Route, Router} from '@angular/router';
 
 @Component({

@@ -12,9 +12,10 @@ import {
   styleUrls: ['./action-button.component.css']
 })
 export class ActionButtonComponent implements AfterViewInit {
-  @Input() classes: string;
   @Input() tip: string;
+  @Input() position: string;
   @Input() icon: string;
+  @Input() classes: string;
 
   @Output('action') action = new EventEmitter<any>();
 

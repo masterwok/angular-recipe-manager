@@ -2,7 +2,8 @@
   <app-action-button
     *ngFor="let button of actionButtons"
     (action)="onClick(button)"
-    [classes]="button.color"
     [icon]="button.icon"
+    [classes]="button.color"
+    [position]="'top'"
     [tip]="button.tip"></app-action-button>
 </div>

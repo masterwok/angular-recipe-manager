@@ -1,6 +1,6 @@
 <a
   class="btn btn-floating tooltipped {{classes}}"
-  data-position="top"
+  [attr.data-position]="position"
   (click)="action.emit(null)"
   [attr.data-tooltip]="tip"
   style="margin-right:10px;">

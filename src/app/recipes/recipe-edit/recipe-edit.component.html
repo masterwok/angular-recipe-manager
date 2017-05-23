@@ -168,19 +168,12 @@
           </div>
           <div class="col s1 removeStepContainer">
 
-            <app-action-button></app-action-button>
-              <!--[icon]="'clear'"-->
-              <!--[tip]="'Remove Step'"-->
-              <!--[classes]="'tooltipped btn-floating btn-small waves-effect waves-light red'"-->
-              <!--(action)="removeStep(stepControl)"></app-action-button>-->
-
-            <!--<a-->
-              <!--(click)="removeStep(stepControl)"-->
-              <!--data-tooltip="Remove Step"-->
-              <!--data-position="right"-->
-              <!--class="tooltipped btn-floating btn-small waves-effect waves-light red">-->
-              <!--<i class="material-icons">clear</i>-->
-            <!--</a>-->
+            <app-action-button
+              [icon]="'clear'"
+              [tip]="'Remove Step'"
+              [classes]="'tooltipped btn-floating btn-small waves-effect waves-light red'"
+              [position]="'right'"
+              (action)="removeStep(stepControl)"></app-action-button>
           </div>
         </div>
       </div>

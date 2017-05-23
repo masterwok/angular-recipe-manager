@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import 'rxjs';
-import {ActionButton} from '../action-buttons/models/action-button.model';
+import {ActionButton} from '../footer-action-buttons/models/action-button.model';
 import {Subject} from 'rxjs/Subject';
 import {NavigationStart, Router} from '@angular/router';
 
