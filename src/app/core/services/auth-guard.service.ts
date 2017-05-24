@@ -14,8 +14,6 @@ export class AuthGuard implements CanActivate, CanLoad {
     this.authObserverable = this.authSerivce.authObservable;
 
     this.authObserverable.subscribe(isAuthenticated => {
-      console.log(`Is authenticated ? ${isAuthenticated}`);
-
       if (!isAuthenticated) {
         this.router.navigate(['/login']);
       }
@@ -29,11 +27,7 @@ export class AuthGuard implements CanActivate, CanLoad {
 
   canLoad(route: Route): Observable<boolean> | Promise<boolean> | boolean {
     // Not sure why but this doesn't work unless wrapped in a promise o____O?
-    return new Promise((resolve) => {
-      this.authObserverable.subscribe(asdf => {
-        resolve(asdf);
-      });
-    });
+    return new Promise((resolve) => this.authObserverable.subscribe(isAuthenticated => resolve(isAuthenticated)));
   }
 
 }
