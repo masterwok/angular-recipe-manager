@@ -11,7 +11,6 @@ import {
   FooterActionButtonsComponent
 } from './footer-action-buttons/footer-action-buttons.component';
 import {ActionButtonsService} from './services/action-buttons.service';
-import {RecipesModule} from './recipes/recipes.module';
 import {SharedModule} from './shared/shared.module';
 import { LoginComponent } from './login/login.component';
 import {AuthService} from './services/auth.service';
@@ -22,17 +21,23 @@ const appRoutes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: '/recipes'
+    redirectTo: 'recipes'
+  },
+  {
+    path: 'recipes',
+    loadChildren: './recipes/recipes.module#RecipesModule',
+    canLoad: [AuthGuard],
+    canActivate: [AuthGuard]
   },
   {
     path: 'login',
     pathMatch: 'full',
     component: LoginComponent
   },
-  // {
-  //   path: '**',
-  //   redirectTo: '/recipes'
-  // }
+  {
+    path: '**',
+    redirectTo: '/recipes'
+  }
 ];
 
 @NgModule({
@@ -46,7 +51,7 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RecipesModule,
+    // RecipesModule,
     SharedModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)

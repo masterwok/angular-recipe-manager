@@ -10,13 +10,12 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {CanDeactivateRecipeEditService} from './services/can-deactivate-recipe-edit.service';
 import {SharedModule} from '../shared/shared.module';
 import {AuthGuard} from '../services/auth-guard.service';
-import {RecipeEditModule} from './recipe-edit/recipe-edit.module';
 import {RecipeRemoveModalComponent} from './recipe-remove-modal/recipe-remove-modal.component';
 
 
 const routes = [
   {
-    path: 'recipes',
+    path: '',
     canActivate: [AuthGuard],
     component: RecipesComponent,
     children: [
