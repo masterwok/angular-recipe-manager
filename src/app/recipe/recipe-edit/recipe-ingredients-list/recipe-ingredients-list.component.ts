@@ -58,6 +58,9 @@ export class RecipeIngredientsListComponent implements OnInit, OnChanges {
       'ingredientAmount': new FormControl(
         ingredient ? ingredient.amount : null,
         [Validators.required]
+      ),
+      'ingredientNote': new FormControl(
+        ingredient ? ingredient.note : null
       )
     });
   }

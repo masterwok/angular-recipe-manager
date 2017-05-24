@@ -163,7 +163,8 @@ export class RecipeEditComponent implements OnInit, AfterContentInit {
     value.ingredients.map(ingredient => {
       recipe.ingredients.push(new Ingredient(
         ingredient.ingredientName,
-        ingredient.ingredientAmount)
+        ingredient.ingredientAmount,
+        ingredient.ingredientNote)
       );
     });
 
