@@ -1,5 +1,5 @@
 import {Component, ViewEncapsulation} from '@angular/core';
-import '../../node_modules/materialize-css/dist/js/materialize.js';
+import 'materialize-css';
 import '../../node_modules/materialize-css/js/materialbox.js';
 import {initializeApp} from 'firebase/app';
 

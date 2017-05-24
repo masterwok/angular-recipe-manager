@@ -11,6 +11,7 @@ import {RecipeDiscardChangesModalComponent} from '../recipe-discard-changes-moda
 
 import * as $ from 'jquery';
 
+
 @Component({
   selector: 'app-recipe-edit',
   templateUrl: './recipe-edit.component.html',
