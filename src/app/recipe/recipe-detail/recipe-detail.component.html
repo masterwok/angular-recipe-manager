@@ -18,7 +18,7 @@
                target="_blank"
                class="collection-item">
               <span style="display: block;">{{ingredient.name}}<span class="chip badge">{{ingredient.amount}}</span></span>
-              <p style="font-size: 10px;">{{ingredient.note}}</p>
+              <p *ngIf="ingredient.note" style="font-size: 10px;">{{ingredient.note}}</p>
             </a>
           </ul>
         </div>
