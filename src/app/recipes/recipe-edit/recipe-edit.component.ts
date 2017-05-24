@@ -30,6 +30,7 @@ export class RecipeEditComponent implements OnInit, AfterContentInit {
               private router: Router,
               private recipeService: RecipeService,
               private actionButtonService: ActionButtonsService) {
+
   }
 
   ngOnInit() {
@@ -45,6 +46,7 @@ export class RecipeEditComponent implements OnInit, AfterContentInit {
       ingredients: new FormArray([]),
       steps: new FormArray([])
     });
+
 
     this.route.params.subscribe((params: Params) => {
       const id = params['id'];
@@ -97,11 +99,54 @@ export class RecipeEditComponent implements OnInit, AfterContentInit {
     return this.discardModal.show();
   }
 
+  private showErrorToast(message: string): void {
+    window['Materialize'].toast(message, 4000, 'errorToast');
+  }
+
+  private verifyForm(): boolean {
+    let isValid = this.recipeForm.valid;
+
+    if ((<FormArray>this.recipeForm.get('ingredients')).length <= 0) {
+      this.showErrorToast('You must add ingredients');
+      isValid = false;
+    }
+
+    if ((<FormArray>this.recipeForm.get('steps')).length <= 0) {
+      this.showErrorToast('You must add directions');
+      isValid = false;
+    }
+
+    if (!this.recipeForm.valid) {
+      this.markFormGroupTouched(this.recipeForm);
+      this.showErrorToast('Make sure there are no empty fields');
+      isValid = false;
+    }
+
+    return isValid;
+  }
+
+  /**
+   * Marks all controls in a form group as touched
+   * @param formGroup - The group to caress..hah
+   */
+  private markFormGroupTouched(formGroup: FormGroup) {
+    (<any>Object).values(formGroup.controls).forEach(control => {
+      control.markAsTouched();
+
+      if (control.controls) {
+        control.controls.forEach(c => this.markFormGroupTouched(c));
+      }
+    });
+  }
+
+
   onSubmit() {
+
+    if (!this.verifyForm()) {
+      return;
+    }
+
     const value = this.recipeForm.value;
-
-    console.log(`Form is valid ? ${this.recipeForm.valid}`);
-
     const recipe = new Recipe(
       value.id,
       value.name,

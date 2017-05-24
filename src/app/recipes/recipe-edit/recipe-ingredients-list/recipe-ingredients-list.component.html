@@ -3,14 +3,13 @@
     <ul class="collection with-header" formArrayName="ingredients">
       <li class="collection-header ingredientsListItem">
         <h4>Ingredients
-          <a
-            (click)="addIngredient()"
-            [ngClass]="{ 'pulse': noIngredients }"
-            class="tooltipped btn-floating btn-small waves-effect waves-light cyan"
-            data-tooltip="Add Ingredient"
-            data-position="right">
-            <i class="material-icons">add</i>
-          </a>
+          <app-action-button
+            [icon]="'add'"
+            [tip]="'Add Step'"
+            [classes]="'tooltipped btn-floating btn-small waves-effect waves-light cyan'"
+            [position]="'right'"
+            [pulse]="noIngredients"
+            (action)="addIngredient()"></app-action-button>
         </h4>
       </li>
       <li
@@ -53,13 +52,12 @@
               class="active">Amount</label>
           </div>
           <div class="col s2 ingredientRemoveColumn">
-            <a
-              (click)="removeIngredient(ingredient)"
-              data-tooltip="Remove Ingredient"
-              data-position="right"
-              class="tooltipped btn-floating waves-effect waves-light red">
-              <i class="material-icons">clear</i>
-            </a>
+            <app-action-button
+              [icon]="'clear'"
+              [tip]="'Remove Ingredient'"
+              [classes]="'tooltipped btn-floating btn-small waves-effect waves-light red'"
+              [position]="'right'"
+              (action)="removeIngredient(ingredient)"></app-action-button>
           </div>
         </div>
       </li>

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActionButtonsService} from '../services/action-buttons.service';
 import {ActionButton} from './models/action-button.model';
-import {NavigationEnd, Router} from '@angular/router';
+import {NavigationEnd, NavigationStart, Router} from '@angular/router';
 import {AuthService} from '../services/auth.service';
 
 @Component({
@@ -30,7 +30,7 @@ export class FooterActionButtonsComponent implements OnInit {
     });
 
     this.router.events.subscribe(event => {
-      if (!(event instanceof NavigationEnd)) {
+      if (!(event instanceof NavigationStart)) {
         return;
       }
 

@@ -28,7 +28,6 @@ export class ActionButtonComponent implements AfterViewInit, AfterViewInit {
 
   onClick() {
     if (this.removeTipAfterClick) {
-      console.log('removing...');
       window['jQuery'](this.button.nativeElement).tooltip('remove');
     }
 

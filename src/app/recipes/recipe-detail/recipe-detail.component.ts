@@ -5,7 +5,7 @@ import {RecipeService} from '../../services/recipe.service';
 import {$} from 'jquery';
 import {ActionButton} from '../../footer-action-buttons/models/action-button.model';
 import {ActionButtonsService} from '../../services/action-buttons.service';
-import {Location} from "@angular/common";
+
 
 @Component({
   selector: 'app-recipe-detail',
@@ -18,7 +18,6 @@ export class RecipeDetailComponent implements OnInit, AfterContentInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private location: Location,
               private recipeService: RecipeService,
               private actionButtonSerivce: ActionButtonsService) {
 
@@ -48,8 +47,8 @@ export class RecipeDetailComponent implements OnInit, AfterContentInit {
       new ActionButton(
         'keyboard_arrow_left',
         'purple waves-effect waves-light',
-        'Go Back',
-        () => this.location.back()
+        'Recipes',
+        () => this.router.navigate(['/recipes'])
       ),
       new ActionButton(
         'add',

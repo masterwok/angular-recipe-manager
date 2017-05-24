@@ -2,7 +2,7 @@
   padding-right: 10px !important;
 }
 
-.ingredientsListItem a {
+app-action-button {
   float: right;
 }
 

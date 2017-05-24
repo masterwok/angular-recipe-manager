@@ -6,3 +6,10 @@ label {
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 30px white inset;
 }
+
+#toast-container {
+  top: auto !important;
+  right: auto !important;
+  bottom: 30px;
+  left: 30px;
+}
