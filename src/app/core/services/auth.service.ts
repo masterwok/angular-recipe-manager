@@ -42,7 +42,7 @@ export class AuthService {
     }
 
     auth().currentUser
-      .getToken()
+      .getIdToken()
       .then(token => this.token = token);
 
     return this.token;
