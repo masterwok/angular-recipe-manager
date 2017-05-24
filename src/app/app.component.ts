@@ -19,7 +19,8 @@ export class AppComponent {
   constructor() {
     initializeApp({
       apiKey: 'AIzaSyCfDoWuPQqFpEX0ukmo3jbAX4MFoiM_LIo',
-      authDomain: 'moms-recipes-f48a4.firebaseapp.com'
+      authDomain: 'moms-recipes-f48a4.firebaseapp.com',
+      databaseURL: 'https://moms-recipes-f48a4.firebaseio.com/'
     });
   }
 }

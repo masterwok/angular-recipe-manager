@@ -19,7 +19,7 @@ export class RecipeDirectionsListComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (!this.recipe) {
+    if (!this.recipe || !this.recipe.steps) {
       return;
     }
 

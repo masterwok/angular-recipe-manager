@@ -47,7 +47,7 @@ export class RecipeEditComponent implements OnInit, AfterContentInit {
     });
 
     this.route.params.subscribe((params: Params) => {
-      const id = +params['id'];
+      const id = params['id'];
 
       this.recipe = this.recipeService.getRecipe(id);
 

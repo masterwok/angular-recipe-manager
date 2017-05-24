@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 
 @Injectable()
 export class Endpoints {
-  public static readonly recipeEndpoint = '';
+  public static readonly recipeEndpoint = 'https://moms-recipes-f48a4.firebaseio.com/recipes.json';
 }
 
 // Stashing this here while I build out the actual service.

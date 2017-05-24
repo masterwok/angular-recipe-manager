@@ -15,7 +15,7 @@ export class RecipeIngredientsListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    if (!this.recipe) {
+    if (!this.recipe || !this.recipe.ingredients) {
       return;
     }
 
