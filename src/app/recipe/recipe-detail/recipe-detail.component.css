@@ -1,3 +1,8 @@
 .detail-container {
   margin-top: 30px;
 }
+
+.recipe-image-wrapper {
+  min-height: 200px;
+  width: 100%;
+}
