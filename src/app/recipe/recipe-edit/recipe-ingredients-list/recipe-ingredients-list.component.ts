@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Ingredient} from '../../models/ingredient.model';
 import {Recipe} from '../../models/recipe.model';
@@ -8,13 +8,16 @@ import {Recipe} from '../../models/recipe.model';
   templateUrl: './recipe-ingredients-list.component.html',
   styleUrls: ['./recipe-ingredients-list.component.css']
 })
-export class RecipeIngredientsListComponent implements OnInit {
+export class RecipeIngredientsListComponent implements OnInit, OnChanges {
   @Input() recipeFormGroup: FormGroup;
   @Input() recipe: Recipe;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
     if (!this.recipe || !this.recipe.ingredients) {
       return;
     }

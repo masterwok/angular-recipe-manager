@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import {Recipe} from '../../models/recipe.model';
 
@@ -7,7 +7,7 @@ import {Recipe} from '../../models/recipe.model';
   templateUrl: './recipe-image.component.html',
   styleUrls: ['./recipe-image.component.css']
 })
-export class RecipeImageComponent implements OnInit {
+export class RecipeImageComponent implements OnInit, OnChanges {
   @Input() recipeFormGroup: FormGroup;
   @Input() recipe: Recipe;
 
@@ -16,7 +16,10 @@ export class RecipeImageComponent implements OnInit {
   constructor() {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
     if (!this.recipe) {
       return;
     }

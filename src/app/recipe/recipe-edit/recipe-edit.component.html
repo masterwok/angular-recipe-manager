@@ -10,21 +10,21 @@
   <div class="row">
     <div class="col l4 s12">
       <app-recipe-image
-        [recipe]="recipe"
+        [(recipe)]="recipe"
         [recipeFormGroup]="recipeForm"></app-recipe-image>
 
       <app-recipe-ingredients-list
-        [recipe]="recipe"
+        [(recipe)]="recipe"
         [recipeFormGroup]="recipeForm"></app-recipe-ingredients-list>
     </div>
 
     <div class="col l6 s12">
       <app-recipe-basic-info
-        [recipe]="recipe"
+        [(recipe)]="recipe"
         [recipeFormGroup]="recipeForm"></app-recipe-basic-info>
       <app-recipe-directions-list
-      [recipe]="recipe"
-      [recipeFormGroup]="recipeForm"></app-recipe-directions-list>
+        [(recipe)]="recipe"
+        [recipeFormGroup]="recipeForm"></app-recipe-directions-list>
     </div>
   </div>
 </form>

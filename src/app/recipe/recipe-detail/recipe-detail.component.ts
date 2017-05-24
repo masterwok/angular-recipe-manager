@@ -31,7 +31,7 @@ export class RecipeDetailComponent implements OnInit, AfterContentInit {
     window['jQuery']('.materialboxed').materialbox();
 
     this.route.params.subscribe((params) => {
-      this.recipe = this.recipeService.getRecipe(params.id);
+      this.recipeService.getRecipe(params.id).then(recipe => this.recipe = recipe);
     });
   }
 

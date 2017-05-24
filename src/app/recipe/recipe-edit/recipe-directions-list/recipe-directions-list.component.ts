@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Recipe} from '../../models/recipe.model';
 
@@ -7,7 +7,7 @@ import {Recipe} from '../../models/recipe.model';
   templateUrl: './recipe-directions-list.component.html',
   styleUrls: ['./recipe-directions-list.component.css']
 })
-export class RecipeDirectionsListComponent implements OnInit {
+export class RecipeDirectionsListComponent implements OnInit, OnChanges {
   @Input() recipeFormGroup: FormGroup;
   @Input() recipe: Recipe;
 
@@ -19,6 +19,9 @@ export class RecipeDirectionsListComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
     if (!this.recipe || !this.recipe.steps) {
       return;
     }
@@ -27,7 +30,6 @@ export class RecipeDirectionsListComponent implements OnInit {
       this.addStep(this.createStepFormGroup(s));
     });
   }
-
 
   private createStepFormGroup(step?: string): FormGroup {
     return new FormGroup({

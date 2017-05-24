@@ -34,14 +34,12 @@ export class RecipeService {
     return this.recipes.slice();
   }
 
-  getRecipe(id: string): Recipe {
-    const recipe = this.recipes.find(r => r.id === id);
-
-    if (!recipe) {
-      return null;
-    }
-
-    return Object.assign({}, recipe);
+  getRecipe(id: string) {
+    // return new Promise((resolve, reject) => {
+    return database().ref(`recipes/${id}`)
+      .once('value')
+      .then(snapshot => snapshot.val());
+    // });
   }
 
   createRecipe(recipe: Recipe) {

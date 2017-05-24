@@ -1,9 +1,14 @@
 import {Injectable} from '@angular/core';
 import {auth} from 'firebase';
 import {Router} from '@angular/router';
+import {Observable} from 'rxjs/Observable';
+
+import 'rxjs/Rx';
 
 @Injectable()
 export class AuthService {
+  public authObservable: Observable<boolean>;
+
   private token: string;
 
   get isAuthenticated(): boolean {
@@ -11,6 +16,10 @@ export class AuthService {
   }
 
   constructor(private router: Router) {
+
+    this.authObservable = Observable.create(observer => {
+      auth().onAuthStateChanged(state => observer.next(state != null));
+    });
   }
 
   public signIn(email: string, password: string) {

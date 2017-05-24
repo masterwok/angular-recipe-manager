@@ -30,7 +30,6 @@ export class RecipeEditComponent implements OnInit, AfterContentInit {
               private router: Router,
               private recipeService: RecipeService,
               private actionButtonService: ActionButtonsService) {
-
   }
 
   ngOnInit() {
@@ -47,17 +46,21 @@ export class RecipeEditComponent implements OnInit, AfterContentInit {
       steps: new FormArray([])
     });
 
-
-    this.route.params.subscribe((params: Params) => {
-      const id = params['id'];
-
-      this.recipe = this.recipeService.getRecipe(id);
-
-      this.imagePath = this.recipe ? this.recipe.imagePath : this.imagePath;
-
-      this.setFormGroup(this.recipe);
+    this.route.params.subscribe((params) => {
+      this.recipeService.getRecipe(params.id).then(recipe => {
+        this.setFormGroup(recipe);
+      });
     });
 
+  }
+
+  private setFormGroup(recipe?: Recipe) {
+    if (!recipe) {
+      return;
+    }
+
+    this.recipeForm.reset(recipe);
+    this.recipe = recipe;
   }
 
   ngAfterContentInit(): void {
@@ -178,14 +181,5 @@ export class RecipeEditComponent implements OnInit, AfterContentInit {
 
   }
 
-  private setFormGroup(recipe?: Recipe) {
-    if (!recipe) {
-      return;
-    }
-
-    this.recipeForm.reset({
-      id: recipe.id,
-    });
-  }
 
 }

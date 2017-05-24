@@ -6,7 +6,7 @@
     <div class="col l4 s12">
       <div class="row">
         <img
-          src="{{recipe.imagePath}}"
+          src="{{recipe?.imagePath}}"
           class="materialboxed col s12"
           style="width: 100%;object-fit: cover;"/>
       </div>
@@ -14,7 +14,7 @@
         <div class="col s12">
           <ul class="collection with-header">
             <li class="collection-header"><h4>Ingredients</h4></li>
-            <a *ngFor="let ingredient of recipe.ingredients"
+            <a *ngFor="let ingredient of recipe?.ingredients"
                href="https://www.google.com/#safe=off&q={{ingredient.name}}+ingredient"
                target="_blank"
                class="collection-item">
@@ -27,15 +27,15 @@
 
     <div class="col l7 s12">
       <div clas="row">
-        <h4>{{recipe.name}}</h4>
+        <h4>{{recipe?.name}}</h4>
         <div class="divider"></div>
-        <p>{{recipe.description}}</p>
+        <p>{{recipe?.description}}</p>
       </div>
       <div class="row" style="margin-top:50px;">
         <h4>Directions</h4>
         <div class="divider" style="margin-bottom:30px;"></div>
 
-        <div class="row" *ngFor="let step of recipe.steps; let i = index;">
+        <div class="row" *ngFor="let step of recipe?.steps; let i = index;">
           <div class="col s12">
             <div class="card deep-orange lighten-4">
               <div class="card-content white-text ">
