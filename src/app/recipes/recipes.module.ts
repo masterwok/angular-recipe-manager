@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {RecipeEditComponent} from './recipe-edit/recipe-edit.component';
 import {RecipeDetailComponent} from './recipe-detail/recipe-detail.component';
 import {RecipeSearchComponent} from './recipe-search/recipe-search.component';
 import {RecipesComponent} from './recipes.component';
@@ -8,15 +7,12 @@ import {RouterModule} from '@angular/router';
 import {RecipeListComponent} from './recipe-search/recipe-list/recipe-list.component';
 import {RecipeItemComponent} from './recipe-search/recipe-list/recipe-item/recipe-item.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {RecipeRemoveModalComponent} from './recipe-remove-modal/recipe-remove-modal.component';
 import {CanDeactivateRecipeEditService} from './services/can-deactivate-recipe-edit.service';
-import { RecipeDiscardChangesModalComponent } from './recipe-discard-changes-modal/recipe-discard-changes-modal.component';
 import {SharedModule} from '../shared/shared.module';
-import { RecipeImageComponent } from './recipe-edit/recipe-image/recipe-image.component';
-import { RecipeIngredientsListComponent } from './recipe-edit/recipe-ingredients-list/recipe-ingredients-list.component';
-import { RecipeBasicInfoComponent } from './recipe-edit/recipe-basic-info/recipe-basic-info.component';
-import { RecipeDirectionsListComponent } from './recipe-edit/recipe-directions-list/recipe-directions-list.component';
 import {AuthGuard} from '../services/auth-guard.service';
+import {RecipeEditModule} from './recipe-edit/recipe-edit.module';
+import {RecipeRemoveModalComponent} from './recipe-remove-modal/recipe-remove-modal.component';
+
 
 const routes = [
   {
@@ -31,18 +27,12 @@ const routes = [
       },
       {
         path: 'edit',
-        component: RecipeEditComponent,
-        canDeactivate: [CanDeactivateRecipeEditService]
+        loadChildren: './recipe-edit/recipe-edit.module#RecipeEditModule'
       },
       {
         path: ':id',
-        component: RecipeDetailComponent
+        component: RecipeDetailComponent,
       },
-      {
-        path: ':id/edit',
-        component: RecipeEditComponent,
-        canDeactivate: [CanDeactivateRecipeEditService]
-      }
     ]
   }
 ];
@@ -57,18 +47,12 @@ const routes = [
   ],
   declarations: [
     // Components
-    RecipeRemoveModalComponent,
     RecipesComponent,
     RecipeItemComponent,
     RecipeListComponent,
     RecipeSearchComponent,
     RecipeDetailComponent,
-    RecipeEditComponent,
-    RecipeDiscardChangesModalComponent,
-    RecipeImageComponent,
-    RecipeIngredientsListComponent,
-    RecipeBasicInfoComponent,
-    RecipeDirectionsListComponent,
+    RecipeRemoveModalComponent
   ],
   providers: [
     // Services
