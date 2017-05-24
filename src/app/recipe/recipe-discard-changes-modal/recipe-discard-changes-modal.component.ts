@@ -1,4 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-recipe-discard-changes-modal',
@@ -14,11 +15,11 @@ export class RecipeDiscardChangesModalComponent implements OnInit {
 
   ngOnInit() {
     // Need to use jQuery to get reference to modal()
-    this.discardModal = window['jQuery']('#discardChangesModal');
+    this.discardModal = $('#discardChangesModal');
   }
 
   public show(): Promise<boolean> {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
 
       this.discardModal.modal({
         dismissible: false,

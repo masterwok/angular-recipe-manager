@@ -6,6 +6,9 @@ import {
   Output, ViewChild
 } from '@angular/core';
 
+import * as $ from 'jquery';
+
+
 @Component({
   selector: 'app-action-button',
   templateUrl: './action-button.component.html',
@@ -28,13 +31,13 @@ export class ActionButtonComponent implements AfterViewInit, AfterViewInit {
 
   onClick() {
     if (this.removeTipAfterClick) {
-      window['jQuery'](this.button.nativeElement).tooltip('remove');
+      $(this.button.nativeElement).tooltip('remove');
     }
 
     this.action.emit(null);
   }
 
   ngAfterViewInit(): void {
-    window['jQuery'](this.button.nativeElement).tooltip();
+    $(this.button.nativeElement).tooltip();
   }
 }

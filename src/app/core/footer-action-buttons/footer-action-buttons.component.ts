@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {ActionButtonsService} from '../services/action-buttons.service';
 import {ActionButton} from './models/action-button.model';
-import {NavigationEnd, NavigationStart, Router} from '@angular/router';
+import {NavigationStart, Router} from '@angular/router';
 import {AuthService} from '../services/auth.service';
+
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-action-buttons',
@@ -34,7 +36,7 @@ export class FooterActionButtonsComponent implements OnInit {
         return;
       }
 
-      window['jQuery']('.tooltipped').tooltip('remove');
+      $('.tooltipped').tooltip('remove');
     });
   }
 

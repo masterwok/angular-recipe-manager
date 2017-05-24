@@ -2,10 +2,10 @@ import {AfterContentInit, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Recipe} from '../models/recipe.model';
 import {RecipeService} from '../services/recipe.service';
-import {$} from 'jquery';
 import {ActionButton} from '../../core/footer-action-buttons/models/action-button.model';
 import {ActionButtonsService} from '../../core/services/action-buttons.service';
 
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -28,7 +28,7 @@ export class RecipeDetailComponent implements OnInit, AfterContentInit {
   ngOnInit() {
 
     // Need to initialize material box as this content is loaded dynamically
-    window['jQuery']('.materialboxed').materialbox();
+    $('.materialboxed').materialbox();
 
     this.route.params.subscribe((params) => {
       this.recipeService.getRecipe(params.id).then(recipe => this.recipe = recipe);
@@ -36,7 +36,7 @@ export class RecipeDetailComponent implements OnInit, AfterContentInit {
   }
 
   ngAfterContentInit(): void {
-    this.removeRecipeModal = window['jQuery']('#removeRecipeModal');
+    this.removeRecipeModal = $('#removeRecipeModal');
 
     // Need to initialize modals
     this.removeRecipeModal.modal({
