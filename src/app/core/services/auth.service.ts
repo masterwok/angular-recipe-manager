@@ -37,9 +37,10 @@ export class AuthService {
    * Sign the current user into Google Firebase.
    * @param email The email of the user.
    * @param password The password of the user.
+   * @returns {firebase.Promise<any>} Promise of Firebase authentication.
    */
-  public signIn(email: string, password: string): void {
-    auth().signInWithEmailAndPassword(email, password)
+  public signIn(email: string, password: string) {
+    return auth().signInWithEmailAndPassword(email, password)
       .then((user) => this.getToken());
   }
 
