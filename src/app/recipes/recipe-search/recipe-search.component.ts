@@ -21,7 +21,11 @@ export class RecipeSearchComponent implements OnInit, AfterContentInit {
   }
 
   ngOnInit() {
-    this.recipes = this.recipeService.getRecipes();
+
+    if(this.recipeService.hasData) {
+      this.showSpinner = false;
+      this.recipes = this.recipeService.getRecipes();
+    }
 
     this.recipeService.recipesUpdated
       .subscribe(recipes => {

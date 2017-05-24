@@ -11,6 +11,10 @@ export class RecipeService {
   private recipes: Recipe[] = [];
   private databaseRef = database().ref('recipes');
 
+  get hasData(): boolean {
+    return this.recipes.length > 0;
+  }
+
   public recipesUpdated: Subject<Recipe[]> = new Subject<Recipe[]>();
 
   constructor() {
