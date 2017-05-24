@@ -1,4 +1,4 @@
-import {RouterModule, Routes} from '@angular/router';
+import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {RecipeDetailComponent} from './recipe-detail/recipe-detail.component';
 import {RecipeSearchComponent} from './recipe-search/recipe-search.component';

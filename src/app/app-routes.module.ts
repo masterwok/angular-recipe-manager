@@ -1,4 +1,4 @@
-import {RouterModule} from '@angular/router';
+import {PreloadAllModules, RouterModule} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {LoginComponent} from './core/login/login.component';
 import {AuthGuard} from './core/services/auth-guard.service';
@@ -29,7 +29,10 @@ const routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, {
+      // We want to preload lazy loaded modules
+      preloadingStrategy: PreloadAllModules
+    })
   ],
   exports: [RouterModule]
 })
