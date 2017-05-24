@@ -3,7 +3,7 @@ import {Subject} from 'rxjs/Subject';
 import {database} from 'firebase';
 
 import 'rxjs/Rx';
-import {Recipe} from '../../recipe/models/recipe.model';
+import {Recipe} from '../models/recipe.model';
 
 
 @Injectable()
