@@ -1,7 +1,7 @@
 import {AfterContentInit, Component, OnInit} from '@angular/core';
 import {ActionButtonsService} from '../../services/action-buttons.service';
 import {ActionButton} from '../../footer-action-buttons/models/action-button.model';
-import {ActivatedRoute, Route, Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Recipe} from "../models/recipe.model";
 import {RecipeService} from "../../services/recipe.service";
 
@@ -12,7 +12,7 @@ import {RecipeService} from "../../services/recipe.service";
 })
 export class RecipeSearchComponent implements OnInit, AfterContentInit {
   public recipes: Recipe[];
-  public query: string;
+  public showSpinner = true;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -24,7 +24,10 @@ export class RecipeSearchComponent implements OnInit, AfterContentInit {
     this.recipes = this.recipeService.getRecipes();
 
     this.recipeService.recipesUpdated
-      .subscribe(recipes => this.recipes = recipes);
+      .subscribe(recipes => {
+        this.showSpinner = false;
+        this.recipes = recipes
+      });
   }
 
   ngAfterContentInit(): void {
@@ -41,6 +44,7 @@ export class RecipeSearchComponent implements OnInit, AfterContentInit {
   }
 
   onQuery(event): void {
+    this.showSpinner = true;
     this.recipeService.query(event.target.value);
   }
 

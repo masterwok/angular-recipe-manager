@@ -1,20 +1,8 @@
 <div
   [hidden]="!isAuthenticating"
   class="row spinner-wrapper">
-  <div class="col s12 center-align">
-    <div class="preloader-wrapper small big active">
-      <div class="spinner-layer spinner-cyan">
-        <div class="circle-clipper left">
-          <div class="circle"></div>
-        </div>
-        <div class="gap-patch">
-          <div class="circle"></div>
-        </div>
-        <div class="circle-clipper right">
-          <div class="circle"></div>
-        </div>
-      </div>
-    </div>
+  <div class="col s12">
+    <app-custom-spinner [spinnerColor]="'#00bcd4'"></app-custom-spinner>
   </div>
 </div>
 
