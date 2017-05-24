@@ -1,10 +1,10 @@
 import {AfterContentInit, Component, OnInit, ViewChild} from '@angular/core';
-import {ActionButtonsService} from '../../services/action-buttons.service';
-import {ActionButton} from '../../footer-action-buttons/models/action-button.model';
+import {ActionButtonsService} from '../../core/services/action-buttons.service';
+import {ActionButton} from '../../core/footer-action-buttons/models/action-button.model';
 import {Location} from '@angular/common';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {Recipe} from '../models/recipe.model';
-import {RecipeService} from '../../services/recipe.service';
+import {RecipeService} from '../../core/services/recipe.service';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Ingredient} from '../models/ingredient.model';
 import {RecipeDiscardChangesModalComponent} from '../recipe-discard-changes-modal/recipe-discard-changes-modal.component';

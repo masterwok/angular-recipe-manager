@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {Recipe} from '../recipes/models/recipe.model';
 import {Subject} from 'rxjs/Subject';
 import {database} from 'firebase';
 
 import 'rxjs/Rx';
+import {Recipe} from '../../recipe/models/recipe.model';
 
 
 @Injectable()

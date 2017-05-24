@@ -1,9 +1,9 @@
 import {AfterContentInit, Component, OnInit} from '@angular/core';
-import {ActionButtonsService} from '../../services/action-buttons.service';
-import {ActionButton} from '../../footer-action-buttons/models/action-button.model';
+import {ActionButtonsService} from '../../core/services/action-buttons.service';
+import {ActionButton} from '../../core/footer-action-buttons/models/action-button.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Recipe} from "../models/recipe.model";
-import {RecipeService} from "../../services/recipe.service";
+import {RecipeService} from "../../core/services/recipe.service";
 
 @Component({
   selector: 'app-recipe-search',
