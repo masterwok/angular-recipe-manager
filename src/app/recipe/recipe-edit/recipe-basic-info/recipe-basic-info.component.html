@@ -32,4 +32,19 @@
     </div>
   </div>
 
+  <div class="row">
+    <div class="col s12 input-field">
+      <textarea
+        id="chefNotes"
+        [ngClass]="{ 'invalid': recipeFormGroup.controls['chefNotes'].touched && !recipeFormGroup.controls['chefNotes'].valid }"
+        name="chefNotes"
+        placeholder="Any chef notes go here..."
+        formControlName="chefNotes"
+        class="materialize-textarea descriptionTextArea"></textarea>
+      <label
+        for="chefNotes"
+        class="active">Chef Notes</label>
+    </div>
+  </div>
+
 </div>

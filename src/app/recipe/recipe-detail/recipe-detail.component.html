@@ -33,6 +33,13 @@
         <div class="divider"></div>
         <p [innerHtml]="recipe?.description | paragraphLineBreaks"></p>
       </div>
+      <div
+        *ngIf="recipe?.chefNotes"
+        clas="row">
+        <h4>Chef Notes</h4>
+        <div class="divider"></div>
+        <p [innerHtml]="recipe?.chefNotes | paragraphLineBreaks"></p>
+      </div>
       <div class="row" style="margin-top:50px;">
         <h4>Directions</h4>
         <div class="divider" style="margin-bottom:30px;"></div>

@@ -43,6 +43,7 @@ export class RecipeEditComponent implements OnInit, AfterContentInit {
       id: new FormControl(null),
       name: new FormControl(null, [Validators.required]),
       description: new FormControl(null, [Validators.required]),
+      chefNotes: new FormControl(null),
       imagePath: new FormControl(null),
       ingredients: new FormArray([]),
       steps: new FormArray([])
@@ -156,6 +157,7 @@ export class RecipeEditComponent implements OnInit, AfterContentInit {
       value.id,
       value.name,
       value.description,
+      value.chefNotes,
       value.imagePath,
       [],
       []

@@ -24,7 +24,8 @@ export class RecipeBasicInfoComponent implements OnInit, OnChanges {
 
     this.recipeFormGroup.patchValue({
       'name': this.recipe.name,
-      'description': this.recipe.description
+      'description': this.recipe.description,
+      'chefNotes': this.recipe.chefNotes
     });
   }
 
