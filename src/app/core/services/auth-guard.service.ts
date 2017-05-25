@@ -11,10 +11,10 @@ import {Observable} from 'rxjs/Observable';
 export class AuthGuard implements CanActivate, CanLoad {
   private authObserverable: Observable<boolean>;
 
-  constructor(private authSerivce: AuthService,
+  constructor(private authService: AuthService,
               private router: Router) {
 
-    this.authObserverable = this.authSerivce.authObservable;
+    this.authObserverable = this.authService.authObservable;
 
     this.authObserverable.subscribe(isAuthenticated => {
       if (!isAuthenticated) {

@@ -7,8 +7,7 @@ import {Router} from '@angular/router';
 import createSpy = jasmine.createSpy;
 import Spy = jasmine.Spy;
 import {LoginComponent} from './login.component';
-import {FormGroup, FormsModule, NgForm, ReactiveFormsModule} from '@angular/forms';
-import {CustomSpinnerComponent} from '../../shared/custom-spinner/custom-spinner.component';
+import {ReactiveFormsModule} from '@angular/forms';
 import {SharedModule} from '../../shared/shared.module';
 
 class RouterStub {

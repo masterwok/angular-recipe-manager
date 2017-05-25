@@ -15,7 +15,9 @@ export class AuthService {
    * Subscribe to this observable to be notified of authentication
    * change events.
    */
-  public authObservable: Observable<boolean>;
+  public authObservable = Observable.create(observer => {
+    auth().onAuthStateChanged(state => observer.next(state != null));
+  });
 
   private token: string;
 
@@ -28,9 +30,6 @@ export class AuthService {
   }
 
   constructor(private router: Router) {
-    this.authObservable = Observable.create(observer => {
-      auth().onAuthStateChanged(state => observer.next(state != null));
-    });
   }
 
   /**
