@@ -8,9 +8,9 @@
         Mom's Recipes
       </a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li routerLinkActive="active"><a routerLink="/login" *ngIf="!isAuthenticated">Login</a></li>
-        <li routerLinkActive="active"><a routerLink="/recipes" *ngIf="isAuthenticated">Recipes</a></li>
-        <li><a (click)="signOut()" *ngIf="isAuthenticated">Logout</a></li>
+        <li routerLinkActive="active"><a id="loginLink" routerLink="/login" *ngIf="!isAuthenticated">Login</a></li>
+        <li routerLinkActive="active"><a id="recipesLink" routerLink="/recipes" *ngIf="isAuthenticated">Recipes</a></li>
+        <li><a id="logoutLink" (click)="signOut()" *ngIf="isAuthenticated">Logout</a></li>
       </ul>
     </div>
   </nav>
