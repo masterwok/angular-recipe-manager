@@ -6,6 +6,9 @@ import {AuthService} from '../services/auth.service';
 
 import * as $ from 'jquery';
 
+/**
+ * Action buttons component that sits at the bottom right of the page.
+ */
 @Component({
   selector: 'app-action-buttons',
   templateUrl: './footer-action-buttons.component.html',
@@ -14,6 +17,10 @@ import * as $ from 'jquery';
 export class FooterActionButtonsComponent implements OnInit {
   public actionButtons: ActionButton[];
 
+  /**
+   * Should only render when the user is authenticated.
+   * @returns {boolean} Whether or not to render to component.
+   */
   get shouldRender(): boolean {
     return this.authService.isAuthenticated;
   }
@@ -41,6 +48,10 @@ export class FooterActionButtonsComponent implements OnInit {
   }
 
 
+  /**
+   * Execute action button action when the buttons is clicked.
+   * @param actionButton The action button whose action should be invoked.
+   */
   onClick(actionButton: ActionButton) {
     actionButton.action();
   }
