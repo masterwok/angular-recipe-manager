@@ -3,6 +3,9 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../services/auth.service';
 import {Router} from '@angular/router';
 
+/**
+ * Login form component used for authentication.
+ */
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -26,6 +29,10 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  /**
+   * Submit the form and attempt to sign the user into the application.
+   * @returns {firebase.Thenable<any>} Promise of authentication result.
+   */
   onSubmit() {
 
     if (!this.loginFormGroup.valid) {
@@ -38,11 +45,17 @@ export class LoginComponent implements OnInit {
 
     const value = this.loginFormGroup.value;
 
-    this.signIn(value.email, value.password);
+    return this.signIn(value.email, value.password);
   }
 
+  /**
+   * Sign the user into the application.
+   * @param email Email Address
+   * @param password Password
+   * @returns {firebase.Thenable<any>} AuthService promise.
+   */
   private signIn(email: string, password: string) {
-    this.authService.signIn(email, password)
+    return this.authService.signIn(email, password)
       .then(() => {
         this.isAuthenticating = false;
         this.router.navigate(['/recipes']);
