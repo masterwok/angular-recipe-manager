@@ -17,8 +17,10 @@
                href="https://www.google.com/#safe=off&q={{ingredient.name}}+ingredient"
                target="_blank"
                class="collection-item">
-              <span style="display: block;">{{ingredient.name}}<span class="chip badge">{{ingredient.amount}}</span></span>
-              <p *ngIf="ingredient.note" style="font-size: 10px;">{{ingredient.note}}</p>
+              <span style="display: block;">{{ingredient.name}}<span
+                class="chip badge">{{ingredient.amount}}</span></span>
+              <p class="note"
+                 *ngIf="ingredient.note">{{ingredient.note}}</p>
             </a>
           </ul>
         </div>
@@ -29,7 +31,7 @@
       <div clas="row">
         <h4>{{recipe?.name}}</h4>
         <div class="divider"></div>
-        <p>{{recipe?.description}}</p>
+        <p [innerHtml]="recipe?.description | paragraphLineBreaks"></p>
       </div>
       <div class="row" style="margin-top:50px;">
         <h4>Directions</h4>

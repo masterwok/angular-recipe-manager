@@ -3,6 +3,10 @@
 }
 
 .recipe-image-wrapper {
-  min-height: 200px;
+  min-height: 200px !important;
   width: 100%;
+}
+
+.note {
+  font-size: 14px;
 }
